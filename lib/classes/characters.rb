@@ -1,5 +1,5 @@
 require 'pry'
-require_relative 'devilfruit.rb'
+require_relative './devilfruit.rb'
 class Characters
 
     attr_accessor :name, :abilities, :fruit_users
@@ -24,10 +24,8 @@ class Characters
             fruit.character == self
         end
     end
-
+    
 end
 
-#luffy = Characters.new("Monkey D. Luffy", "Armament Haki, Observation Haki, Conquering King's Haki")
-#rubberfruit = DevilFruit.new("Paramecia", "Gomu Gomu no Mi(Rubber)")
-#rubberfruit.character = luffy
+
 
