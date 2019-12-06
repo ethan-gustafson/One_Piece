@@ -1,14 +1,16 @@
 require 'pry'
 require_relative './characters.rb'
 require_relative './devilfruit.rb'
+require_relative './gif.rb'
 class OnePiece::CLI
 
     def call
+        
      input = " "
         while input != "exit"
+            puts ""
             puts "Welcome to One Piece!"
-
-            
+            puts ""
             puts "
             _____________¶¶¶¶¶¶¶¶¶¶¶¶¶
             _____________¶¶___________¶¶
@@ -40,7 +42,6 @@ class OnePiece::CLI
             ________¶¶___________________________¶¶
             _________¶¶________________________¶¶¶
             ___________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
-
             puts "To see a summary of the show, type 'summary'."
             puts "Type 'length' to see how many episodes there are in One Piece!"
             puts "Type 'arcs' to see each story arc of One Piece!"
@@ -50,8 +51,8 @@ class OnePiece::CLI
             puts "Type 'where' if you would like to know where to watch One Piece!"
             puts "To quit, type 'exit'."
             input = gets.strip
-
-                case input
+        
+            case input
             when 'summary'
                 summary
             when 'length'
