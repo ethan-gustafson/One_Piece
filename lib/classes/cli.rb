@@ -51,21 +51,22 @@ class OnePiece::CLI
             puts "To quit, type 'exit'."
             input = gets.strip
 
-            case input
-        when 'summary'
-            summary
-        when 'length'
-            number_of_episodes
-        when 'arcs'
-            chosen_arc
-        when 'list characters'
-            list_characters
-        when 'fruit'
-            chosen_fruit
-        when 'haki'
-            puts haki
-        when 'where'
-            where_to_watch
+                case input
+            when 'summary'
+                summary
+            when 'length'
+                number_of_episodes
+            when 'arcs'
+                chosen_arc
+            when 'list characters'
+                list_characters
+            when 'fruit'
+                chosen_fruit
+            when 'haki'
+                puts haki
+            when 'where'
+                where_to_watch
+            end
         end
     end
 
