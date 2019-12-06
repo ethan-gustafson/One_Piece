@@ -5,7 +5,7 @@ require "classes"
 require "classes/version"
 require "classes/characters.rb"
 require "classes/scraper.rb"
-require "classes.rb"
+
 
 
 # You can add fixtures and/or initialization code here to make experimenting

@@ -2,6 +2,7 @@ require 'pry'
 require_relative './characters.rb'
 require_relative './devilfruit.rb'
 require_relative './gif.rb'
+
 class OnePiece::CLI
 
     def call
@@ -40,42 +41,55 @@ class OnePiece::CLI
         _________¶¶________________________¶¶¶
         ___________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
         puts ""
-     
+        menu
+    end
+
+    def menu
+        
         input = " "
         while input != "exit"
+
             puts ""
             puts "To see a summary of the show, type 'summary'."
             puts "Type 'length' to see how many episodes there are in One Piece!"
             puts "Type 'arcs' to see each story arc of One Piece!"
             puts "Type 'characters' if you would like to see the list of characters!"
-            puts "Type 'fruit' if you would lke to see a list of all known Devil Fruits!"
+            puts "Type 'fruits' if you would lke to see a list of all known Devil Fruits!"
             puts "Type 'haki' to see what Haki is!"
             puts "Type 'where' if you would like to know where to watch One Piece!"
             puts "To quit, type 'exit'."
             input = gets.strip
         
             case input
+
             when 'summary'
                 puts ""
                 summary
+
             when 'length'
                 puts ""
-                number_of_episodes
+                episodes
+
             when 'arcs'
                 puts ""
-                chosen_arc
+                arcs
+
             when 'characters'
                 puts ""
-                list_characters
-            when 'fruit'
+                characters
+
+            when 'fruits'
                 puts ""
-                chosen_fruit
+                fruits
+
             when 'haki'
                 puts ""
                 puts haki
+
             when 'where'
                 puts ""
                 where_to_watch
+            
             end
         end
     end
@@ -84,7 +98,7 @@ class OnePiece::CLI
         Scraper.new.summary
     end
 
-    def number_of_episodes
+    def episodes
         puts "There are 913 episodes as of December 7th, 2019."
     end
 
@@ -92,35 +106,41 @@ class OnePiece::CLI
         puts "You can find One Piece on Crunchyroll, Funimation or Hulu!"
     end
 
-    def list_characters
-        puts ""
+    def characters
          characters = Scraper.new.all_characters
+         puts ""
          puts "Hit a number from 1-89 to see a character/groups bio!"
          input = gets.strip.to_i
+
          if characters.include?(input)
             index = characters[input - 1]
-            #Scraper.new.bios.each do |bio|
-             #   puts bio
-            #end
-         elsif input < 1 || input > 89 || input 
+            Scraper.new.bios.each do |bio|
+                puts bio
+
+         #elsif input < 1 || input > 89 || input == " "
+          #  puts "Oops! Make sure you choose a number from 1-89!"
+           # return menu
+            end
         end
     end
 
-    #def chosen_character
-     #   puts "Type 'more info' if you would like to know more!"
+    #def arcs
+    #    lists arcs by index
+     #   puts "Type a number from 1 to whatever to see more about that arc!"
+     #   
     #end
 
-    #def chosen_arc
-     #   puts "Type 'arc info' to see information regarding the arc you have chosen!"
-    #end
+    def fruits
+        devil_fruits = ["Logia", "Paramecia", "Zoan"]
+        devil_fruits.each.with_index(1) do |fruit, index|
+            puts "#{index}. #{fruit}"
+        end
+        puts "Choose a number to see which characters have those kinds of fruits!"
+    end # need to add a description of the fruit abilities, and to assign characters to fruits
 
-    #def chosen_fruit
-     #   puts "Type a number from the list to see the information about that fruit!"
-    #end
-
-    #def haki
-        #puts "and this is Haki"
-    #end
+    def haki
+        Scraper.new.haki_info
+    end
 
 end
 
@@ -149,3 +169,4 @@ end
       #puts "----------------------".colorize(:green)
     #end
   #end
+#binding.pry
