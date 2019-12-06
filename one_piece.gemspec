@@ -1,6 +1,6 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "one_piece/version"
+require "classes/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "one_piece"
@@ -33,5 +33,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.12.2"
 
   spec.add_dependency "nokogiri"
-  spec.add_dependency "open-uri"
 end
