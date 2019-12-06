@@ -22,4 +22,3 @@ class DevilFruit
 end
 
 
-binding.pry
