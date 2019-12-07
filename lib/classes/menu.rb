@@ -54,7 +54,7 @@ class Menu
 
     def summary
         Scraper.new.summary
-    end
+    end#needs delimiters
 
     def episodes
         puts "There are 913 episodes as of December 7th, 2019."

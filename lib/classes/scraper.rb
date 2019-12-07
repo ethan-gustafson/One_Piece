@@ -13,7 +13,7 @@ class Scraper
     end
 
     def haki_page
-        html = "https://onepiece.fandom.com/wiki/Haki"
+        html = "https://myanimelist.net/featured/781/The_3_Different_Types_of_One_Piece_Haki"
     end
 
     def arcs_page
@@ -23,9 +23,10 @@ class Scraper
     def summary
         url = open(self.char_page)
         page = Nokogiri::HTML(url)
-        sorted = page.css(".mw-parser-output").text.split(".")
-        rejoin = sorted.slice(3..12).join(" ")
-        summary = rejoin
+        
+        page.search(".mw-parser-output").map do |div|
+            div.at('p').text.strip
+        end  
     end#Needs delimiters
 
     def all_characters
@@ -80,20 +81,8 @@ class Scraper
     def haki_info
         url = open(self.haki_page)
         page = Nokogiri::HTML(url)
-        sections = page.css(".mw-content-text").text.split(".")
-        haki = sections[28..40]
-        haki_description = haki[1..5]
-        kenbunshoku_haki = haki[7..10]
-        busoshoku_haki = haki[11..17]
-        haoshoku_haki = haki[18..19]    #The reason this is so shitty is because the Wiki 
-                                        #does not put out anything naturally convenient to pick out. 
-        puts haki_description           #if someone shows me how to really get in there to pick it out I will update this asap.
-        puts ""
-        puts kenbunshoku_haki
-        puts ""
-        puts busoshoku_haki
-        puts ""
-        puts haoshoku_haki
+        sections = page.css(".content.clearfix.featured-article-body").css("h1").text
+        #sections.collect.with_index(1) {|haki, index| puts "#{index}. #{haki}"}
     end #Needs delimiter polishiing
 
 end
