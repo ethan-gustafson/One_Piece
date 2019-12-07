@@ -4,7 +4,8 @@ require 'pry'
 
 class Scraper
 
-    #attr_reader :fruit_types
+    attr_reader :devil_fruits
+
     def char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
@@ -49,7 +50,6 @@ class Scraper
             puts bio
         end.text #This will go through each characters bio based on what input happens.
     end
-    
     #input = gets.strip.to_i
 
          #if characters.include?(input)
@@ -63,13 +63,13 @@ class Scraper
             #end
         #end
 
-    def all_fruits 
+    def self.fruits 
         url = open(self.fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
-        devil_fruits.shift
-        devil_fruits #can iterate through each fruit and sort out the unwanted stuff
-    end
+        @devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
+        @devil_fruits.shift
+        @devil_fruits
+    end#needs delimiters
 
     def haki_info
         url = open(self.haki_page)

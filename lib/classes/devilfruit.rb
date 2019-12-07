@@ -22,10 +22,11 @@ class DevilFruit
         devil_fruits.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit}"
         end
-
-    def self.find_by_name(fruit_name)
-        DevilFruit.all.find{|fruit| fruit.fruit_name == fruit_name}
     end
+
+    # def self.find_by_name(fruit_name)
+    #     DevilFruit.all.find{|fruit| fruit.fruit_name == fruit_name}
+    # end
 
     #def self.list(input)
      #   if input == 1

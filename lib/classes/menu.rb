@@ -79,7 +79,13 @@ class Menu
 
     def fruits
         Scraper.new.fruits
-        puts "Choose a number to see which characters have those kinds of fruits!"
+        puts "Choose a number to see more info on those kinds of fruits!"
+        input = gets.strip.to_i
+        #if (1..Scraper.devil_fruits).include?(input)
+        #fruit = Scraper.devil_fruits[input - 1]
+        #puts  - 
+        
+       # end
     end # so far this shows the list of fruits. We need to put a scraper method that inputs each fruits info by index.
 
     def haki
