@@ -4,8 +4,6 @@ require 'pry'
 
 class Scraper
 
-    attr_reader :devil_fruits
-
     def char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
@@ -63,12 +61,20 @@ class Scraper
             #end
         #end
 
-    def self.fruits 
+    def fruits 
         url = open(self.fruits_page)
         page = Nokogiri::HTML(url)
-        @devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
-        @devil_fruits.shift
-        @devil_fruits
+        devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
+        devil_fruits.shift
+        new_fruits = devil_fruits
+        new_fruits.join(', ')
+        god_fruits = new_fruits
+        string = god_fruits.to_s
+        deleter = string.split(/\W+[\*,~,(]/)
+        deleter
+        # deleter.collect.with_index do |fruit, index|
+        #    puts "#{index}. - #{fruit}"  
+        # end  
     end#needs delimiters
 
     def haki_info
@@ -95,3 +101,8 @@ binding.pry
 
 #connecting the href link
 #page.css("a").attr("href").value
+
+
+#devil_fruits.collect do |fruit|
+#fruit.chomp("*")
+#end

@@ -81,9 +81,9 @@ class Menu
         Scraper.new.fruits
         puts "Choose a number to see more info on those kinds of fruits!"
         input = gets.strip.to_i
-        #if (1..Scraper.devil_fruits).include?(input)
+        #if (1..Scraper.devil_fruits).include?(input) <- this means that the devil fruits need to have an index
         #fruit = Scraper.devil_fruits[input - 1]
-        #puts  - 
+        #puts fruit
         
        # end
     end # so far this shows the list of fruits. We need to put a scraper method that inputs each fruits info by index.
