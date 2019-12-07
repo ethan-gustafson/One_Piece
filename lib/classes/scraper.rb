@@ -1,8 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
-require_relative './characters.rb'
-require_relative './devilfruit.rb'
+
 class Scraper
 
     #attr_reader :fruit_types
@@ -50,7 +49,7 @@ class Scraper
             puts bio
         end.text
     end
-
+binding.pry
             #onepiece_bio = page.css(".mw-content-ltr p")[0].text - iteration with name and bio all at once 
         #onepiece_bio.chomp("\n").delete"\""
         #c = Characters.new every iteration creates new character, assign bio same time

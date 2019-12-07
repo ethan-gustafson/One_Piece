@@ -1,5 +1,7 @@
 require 'pry'
+require_relative './scraper.rb'
 require_relative './devilfruit.rb'
+
 class Characters
 
     attr_accessor :name, :abilities, :fruit_users
@@ -25,6 +27,9 @@ class Characters
         end
     end
     
+    #def self.list
+
+    #end
 end
 
 
