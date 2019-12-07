@@ -18,37 +18,37 @@ class Menu
             puts "To quit, type 'exit'."
             input = gets.strip
         
-                                case input
+            case input
 
-                                when 'summary'
-                                    puts ""
-                                    summary
+            when 'summary'
+                puts ""
+                summary
 
-                                when 'length'
-                                    puts ""
-                                    episodes
+            when 'length'
+                puts ""
+                episodes
 
-                                when 'arcs'
-                                    puts ""
-                                    arcs
+            when 'arcs'
+                puts ""
+                arcs
 
-                                when 'characters'
-                                    puts ""
-                                    characters
+            when 'characters'
+                puts ""
+                characters
 
-                                when 'fruits'
-                                    puts ""
-                                    fruits
+            when 'fruits'
+                puts ""
+                fruits
 
-                                when 'haki'
-                                    puts ""
-                                    haki
+            when 'haki'
+                puts ""
+                haki
 
-                                when 'where'
-                                    puts ""
-                                    where_to_watch
+            when 'where'
+                puts ""
+                where_to_watch
             
-                                end
+            end
         end
     end
 
@@ -68,19 +68,8 @@ class Menu
          characters = Scraper.new.all_characters
          puts ""
          puts "Hit a number from 1-89 to see a character/groups bio!"
-         input = gets.strip.to_i
-
-         if characters.include?(input)
-            index = characters[input - 1]
-            Scraper.new.bios.each do |bio|
-                puts bio
-
-         #elsif input < 1 || input > 89 || input == " "
-          #  puts "Oops! Make sure you choose a number from 1-89!"
-           # return menu
-            end
-        end
-    end
+         #Scraper.new.bios
+    end     # ^^ We need to implement a scraper method that gives us each character bio by index
 
     #def arcs
     #    lists arcs by index
@@ -89,42 +78,12 @@ class Menu
     #end
 
     def fruits
-        devil_fruits = ["Logia", "Paramecia", "Zoan"]
-        devil_fruits.each.with_index(1) do |fruit, index|
-            puts "#{index}. #{fruit}"
-        end
+        Scraper.new.fruits
         puts "Choose a number to see which characters have those kinds of fruits!"
-    end # need to add a description of the fruit abilities, and to assign characters to fruits
+    end # so far this shows the list of fruits. We need to put a scraper method that inputs each fruits info by index.
 
     def haki
         Scraper.new.haki_info
-    end
+    end#done
 
 end
-
-          #here is a reference for choosing a character or fruit from the music CLI
-#def play_song
-#puts "Which song number would you like to play?"
-#alphabet_songs = Song.all.sort{ |a, b| a.name <=> b.name }.uniq
-#input = gets.strip.to_i
-#if (1..Song.all.uniq.length).include?(input)
- # song = alphabet_songs[input - 1]
-  #puts "Playing #{song.name} by #{song.artist.name}"
-#end
-#end
-
-                        #here is a reference from the student scraper CLI
-#def display_students
- #   Student.all.each do |student|
-  #    puts "#{student.name.upcase}".colorize(:blue)
-   #   puts "  location:".colorize(:light_blue) + " #{student.location}"
-    #  puts "  profile quote:".colorize(:light_blue) + " #{student.profile_quote}"
-     # puts "  bio:".colorize(:light_blue) + " #{student.bio}"
-      #puts "  twitter:".colorize(:light_blue) + " #{student.twitter}"
-      #puts "  linkedin:".colorize(:light_blue) + " #{student.linkedin}"
-      #puts "  github:".colorize(:light_blue) + " #{student.github}"
-      #puts "  blog:".colorize(:light_blue) + " #{student.blog}"
-      #puts "----------------------".colorize(:green)
-    #end
-  #end
-#binding.pry

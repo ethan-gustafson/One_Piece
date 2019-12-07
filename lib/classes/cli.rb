@@ -53,5 +53,8 @@ class OnePiece::CLI
 
         puts ""
         Menu.new.menu
+
     end
+
+end
     

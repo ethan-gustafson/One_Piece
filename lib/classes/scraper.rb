@@ -27,7 +27,7 @@ class Scraper
         sorted = page.css(".mw-parser-output").text.split(".")
         rejoin = sorted.slice(3..12).join(" ")
         summary = rejoin
-    end
+    end#Needs delimiters
 
     def all_characters
         url = open(self.char_page)
@@ -36,7 +36,7 @@ class Scraper
 
         characters_array[2..90].each.with_index(1) do |character,index|
             puts "#{index}. #{character.attributes.values[1]}"
-        end
+        end#done
     end
 
     def bios
@@ -45,30 +45,30 @@ class Scraper
         sorted = page.css(".mw-parser-output").text.split(".")
         char_bios = sorted
 
-        char_bios.each do |bio|
+        char_bios.each.with_index(1) do |bio|
             puts bio
-        end.text
+        end.text #This will go through each characters bio based on what input happens.
     end
-binding.pry
-            #onepiece_bio = page.css(".mw-content-ltr p")[0].text - iteration with name and bio all at once 
-        #onepiece_bio.chomp("\n").delete"\""
-        #c = Characters.new every iteration creates new character, assign bio same time
     
+    #input = gets.strip.to_i
 
-    #def fruit_types_list
-     #   url = open(self.fruits_page)
-      #  page = Nokogiri::HTML(url)
-       # logia_fruit = page.css("p.italic.bolder")[1].text.chomp(" -")
-        #paramecia_fruit = page.css("p.italic.bolder")[13].text.chomp("-")
-        #zoan_fruit = ("p.italic.bolder")[19].text.chomp.(" -")
-    #end #Done - I might need this method if for some reason I need to connect the scraped bits to devilfruit instances
+         #if characters.include?(input)
+          #  index = characters[input - 1]
+           # Scraper.new.bios.each do |bio|
+            #    puts bio
+
+         #elsif input < 1 || input > 89 || input == " "
+          #  puts "Oops! Make sure you choose a number from 1-89!"
+           # return menu
+            #end
+        #end
 
     def all_fruits 
         url = open(self.fruits_page)
         page = Nokogiri::HTML(url)
         devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
         devil_fruits.shift
-        devil_fruits
+        devil_fruits #can iterate through each fruit and sort out the unwanted stuff
     end
 
     def haki_info
@@ -91,7 +91,7 @@ binding.pry
     end #Needs delimiter polishiing
 
 end
-#binding.pry
+binding.pry
 
 #connecting the href link
 #page.css("a").attr("href").value
