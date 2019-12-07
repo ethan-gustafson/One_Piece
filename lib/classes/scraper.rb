@@ -64,18 +64,18 @@ class Scraper
     def fruits 
         url = open(self.fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".content.rich-content.article")[0].text.strip.split("•")
+        devil_fruits = page.css(".content.rich-content.article").css(".italic").text.strip.split("•")
         devil_fruits.shift
         new_fruits = devil_fruits
-        new_fruits.join(', ')
-        god_fruits = new_fruits
-        string = god_fruits.to_s
-        deleter = string.split(/\W+[\*,~,(]/)
-        deleter
-        # deleter.collect.with_index do |fruit, index|
+        # new_fruits.join(', ')
+        # god_fruits = new_fruits
+        # string = god_fruits.to_s
+        # shit = string.delete("~")
+        # shit
+        # .collect.with_index do |fruit, index|
         #    puts "#{index}. - #{fruit}"  
         # end  
-    end#needs delimiters
+    end#needs delimiters!!!!!!!!
 
     def haki_info
         url = open(self.haki_page)
