@@ -4,7 +4,7 @@ require_relative './devilfruit.rb'
 require_relative './menu.rb'
 require_relative './effects.rb'
 
-class OnePiece::CLI
+class CLI
 
     def call
         Effects.new.logo
