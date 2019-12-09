@@ -28,4 +28,4 @@ attr_accessor :name, :bio
 
 end
 
-binding.pry
+#binding.pry

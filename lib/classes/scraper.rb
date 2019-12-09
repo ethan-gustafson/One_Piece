@@ -21,7 +21,7 @@ class Scraper
         summary = page.search(".mw-parser-output").map do |div|
             div.at('p').text.strip
         end
-        summary.to_s
+        summary
     end
 
     def self.all_characters
@@ -31,6 +31,13 @@ class Scraper
 
         characters = characters_array[2..11].collect{|character| character}
         char = characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
+    end
+
+    def self.haki
+        url = open("https://onepiece.fandom.com/wiki/Haki")
+        page = Nokogiri::HTML(url)
+        haki = page.css(".mw-content-text").css("p")[0].text
+        haki.gsub(/\[.*?\]/, "")
     end
 
     def self.fruits_bio
@@ -56,84 +63,88 @@ class Scraper
         page = Nokogiri::HTML(url)
         devil_fruits = page.css(".wrapper").css("p")[20].text
     end
- 
-    def self.haki
-        url = open("https://onepiece.fandom.com/wiki/Haki")
-        page = Nokogiri::HTML(url)
-        haki = page.css(".mw-content-text").css("p")[0].text
-    end
 
     def self.luffy
         url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
         page = Nokogiri::HTML(url)
-        luffy = page.css(".mw-content-text").css("p")[4]
+        luffy = page.css(".mw-content-text").css("p")[4].text
+        luffy.gsub(/\[.*?\]/, "")
     end
 
     def self.zoro
         url = open("https://onepiece.fandom.com/wiki/Roronoa_Zoro")
         page = Nokogiri::HTML(url)
-        zoro = page.css(".mw-content-text").css("p")[4..6]
+        zoro = page.css(".mw-content-text").css("p")[4..6].text
+        zoro.gsub(/\[.*?\]/, "")
     end
 
     def self.nami
         url = open("https://onepiece.fandom.com/wiki/Nami")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")[4..5]
+        nami = page.css(".mw-content-text").css("p")[4..5].text
+        nami.gsub(/\[.*?\]/, "")
     end
 
     def self.usopp
         url = open("https://onepiece.fandom.com/wiki/Usopp")
         page = Nokogiri::HTML(url)
-        usopp = page.css(".mw-content-text").css("p")[4..7]
+        usopp = page.css(".mw-content-text").css("p")[4..7].text
+        usopp.gsub(/\[.*?\]/, "")
     end
 
     def self.sanji
         url = open("https://onepiece.fandom.com/wiki/Sanji")
         page = Nokogiri::HTML(url)
-        sanji = page.css(".mw-content-text").css("p")[4..6]
+        sanji = page.css(".mw-content-text").css("p")[4..6].text
+        sanji.gsub(/\[.*?\]/, "")
     end
 
     def self.chopper
         url = open("https://onepiece.fandom.com/wiki/Tony_Tony_Chopper")
         page = Nokogiri::HTML(url)
-        chopper = page.css(".mw-content-text").css("p")[4..6]
+        chopper = page.css(".mw-content-text").css("p")[4..6].text
+        chopper.gsub(/\[.*?\]/, "")
     end
 
     def self.robin
         url = open("https://onepiece.fandom.com/wiki/Nico_Robin")
         page = Nokogiri::HTML(url)
-        robin = page.css(".mw-content-text").css("p")[4..7]
+        robin = page.css(".mw-content-text").css("p")[4..7].text
+        robin.gsub(/\[.*?\]/, "")
     end
 
     def self.franky
         url = open("https://onepiece.fandom.com/wiki/Franky")
         page = Nokogiri::HTML(url)
-        franky = page.css(".mw-content-text").css("p")[4..7]
+        franky = page.css(".mw-content-text").css("p")[4..7].text
+        franky.gsub(/\[.*?\]/, "")
     end
 
     def self.brook
         url = open("https://onepiece.fandom.com/wiki/Brook")
         page = Nokogiri::HTML(url)
-        brook = page.css(".mw-content-text").css("p")[4..7]
+        brook = page.css(".mw-content-text").css("p")[4..7].text
+        brook.gsub(/\[.*?\]/, "")
     end
 
     def self.jimbei
         url = open("https://onepiece.fandom.com/wiki/Jinbe")
         page = Nokogiri::HTML(url)
-        jimbei = page.css(".mw-content-text").css("p")[1..3]
+        jimbei = page.css(".mw-content-text").css("p")[1..3].text
+        jimbei.gsub(/\[.*?\]/, "")
     end
 
     def self.bios
-        @@bios << luffy.text
-        @@bios << zoro.text
-        @@bios << nami.text
-        @@bios << usopp.text
-        @@bios << sanji.text
-        @@bios << chopper.text
-        @@bios << robin.text
-        @@bios << franky.text
-        @@bios << brook.text
-        @@bios << jimbei.text
+        @@bios << luffy
+        @@bios << zoro
+        @@bios << nami
+        @@bios << usopp
+        @@bios << sanji
+        @@bios << chopper
+        @@bios << robin
+        @@bios << franky
+        @@bios << brook
+        @@bios << jimbei
         @@bios
     end
 
@@ -145,3 +156,5 @@ class Scraper
     end
        
 end
+
+#binding.pry

@@ -48,14 +48,47 @@ class Menu
 
     def summary
         puts Scraper.summary
+        input = " "
+        while input != 'menu'
+            puts ""
+            puts "Type 'menu' to go back to the menu!"
+            input = gets.strip
+
+            case input 
+            when 'menu'
+                menu
+            end
+        end
     end
 
     def episodes
         puts "There are 913 episodes as of December 7th, 2019."
+        input = " "
+        while input != 'menu'
+            puts ""
+            puts "Type 'menu' to go back to the menu!"
+            input = gets.strip
+
+            case input 
+            when 'menu'
+                menu
+            end
+        end
     end
 
     def where_to_watch
         puts "You can find One Piece on Crunchyroll, Funimation or Hulu!"
+        input = " "
+        while input != 'menu'
+            puts ""
+            puts "Type 'menu' to go back to the menu!"
+            input = gets.strip
+
+            case input 
+            when 'menu'
+                menu
+            end
+        end
     end
 
     def characters
@@ -77,6 +110,8 @@ class Menu
     end
 
     def fruits
+        puts Scraper.fruits_bio
+        puts ""
         devil_fruits = ["1. Paramecia", "2. Zoan", "3. Logia"]
         puts devil_fruits
         input = " "
@@ -98,6 +133,17 @@ class Menu
 
     def haki
        puts Scraper.haki
+       input = " "
+        while input != 'menu'
+            puts ""
+            puts "Type 'menu' to go back to the menu!"
+            input = gets.strip
+
+            case input 
+            when 'menu'
+                menu
+            end
+        end
     end
 
 end
