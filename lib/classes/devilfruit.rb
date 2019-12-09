@@ -4,7 +4,7 @@ require_relative './characters.rb'
 
 class DevilFruit
 
-    attr_accessor :type, :fruit_name, :character
+    attr_accessor :type, :fruit_name
     @@all = []
 
     def initialize(type, fruit_name)
@@ -23,14 +23,6 @@ class DevilFruit
             puts "#{index}. #{fruit}"
         end
     end
-
-    # def self.find_by_name(fruit_name)
-    #     DevilFruit.all.find{|fruit| fruit.fruit_name == fruit_name}
-    # end
-
-    #def self.list(input)
-     #   if input == 1
-
 
 end
 

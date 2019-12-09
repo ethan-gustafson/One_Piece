@@ -23,24 +23,7 @@ class Characters
         end
     end
 
-    # I want to connect a character object to the scraper list.
-    #I want to be able to see each character object.
-        
-
-    # def add_fruit(fruit)
-    #     fruit.character = self
-    # end
-
-    # def fruit_user
-    #     DevilFruit.all.select do |fruit|
-    #         fruit.character == self
-    #     end
-    # end
-    
-    #def self.list
-
-    #end
 end
-binding.pry
+#binding.pry
 
 

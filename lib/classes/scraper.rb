@@ -4,12 +4,14 @@ require 'pry'
 
 class Scraper
 
+    @@bios = []
+
     def self.char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
 
     def self.fruits_page
-        html = "https://aminoapps.com/c/one-piece/page/blog/list-of-devil-fruits/Zbdk_amHBu02RK58QjPn2Xd5LvJvdoM3Xk"
+        html = "https://onepiece.fandom.com/wiki/Devil_Fruit"
     end
 
     def self.haki_page
@@ -24,81 +26,112 @@ class Scraper
         url = open(char_page)
         page = Nokogiri::HTML(url)
         
-        page.search(".mw-parser-output").map do |div|
+        summary = page.search(".mw-parser-output").map do |div|
             div.at('p').text.strip
-        end  
-    end#Needs delimiters
+        end
+        summary
+    end
 
     def self.all_characters
         url = open(char_page)
         page = Nokogiri::HTML(url)
         characters_array = page.css(".mw-headline")
 
-        characters = characters_array[2..90].collect{|character| character}
+        characters = characters_array[2..11].collect{|character| character}
         characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
     end
 
     def self.bios
-        url = open(char_page)
-        page = Nokogiri::HTML(url)
-        bios_array = page.css(".mw-parser-output")
-        
-
-        #char_bios.each.with_index(1) do |bio|
-         #   puts bio
-        #end.text #This will go through each characters bio based on what input happens.
+        @@bios
     end
-    #input = gets.strip.to_i
-
-         #if characters.include?(input)
-          #  index = characters[input - 1]
-           # Scraper.new.bios.each do |bio|
-            #    puts bio
-
-         #elsif input < 1 || input > 89 || input == " "
-          #  puts "Oops! Make sure you choose a number from 1-89!"
-           # return menu
-            #end
-        #end
 
     def self.fruits 
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".content.rich-content.article").css(".italic").text.strip.split("•")
-        devil_fruits.shift
-        new_fruits = devil_fruits
-        new_fruits.join(', ')
-        god_fruits = new_fruits
-        string = god_fruits.to_s
-        variable = string.delete("~")
-        var = variable.split(/\W+[\,]/)
-        function = var.to_s
-        ruby = function.gsub!(/[(]/, "- ")
-        ruby_delete = ruby.tr('[', '')
-        finally = ruby_delete.tr(']', '')
-        finishing = finally.split(",")
-        getrdone = finishing.to_s
-        done = getrdone.gsub(":triangular_flag_on_post: THANK YOU FOR READING :triangular_flag_on_post:", "")
-        done.split(",")
-        #  new_fruits.collect.with_index do |fruit, index|
-        #     puts "#{index}. - #{fruit}"  
-        #  end  
-    end#needs delimiters!!!!!!!!
-
+        devil_fruits = page.css(".mw-content-text")
+    end
+        
     def self.haki_info
         url = open(haki_page)
         page = Nokogiri::HTML(url)
         sections = page.css(".content.clearfix.featured-article-body").css("h1").text
-        #sections.collect.with_index(1) {|haki, index| puts "#{index}. #{haki}"}
-    end #Needs delimiter polishiing
+    end
+
+    def self.arcs
+        url = open(arcs_page)
+        page = Nokogiri::HTML(url)
+        arcs = page.css(".mw-content-text").attr("href")
+    end
+
+    def self.luffy
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        luffy = page.css(".mw-content-text").css("p")[4].text
+        @@bios << luffy
+    end
+
+    def self.zoro
+        url = open("https://onepiece.fandom.com/wiki/Roronoa_Zoro")
+        page = Nokogiri::HTML(url)
+        zoro = page.css(".mw-content-text").css("p")[4..6].text
+        @@bios << zoro
+    end
+
+    def self.nami
+        url = open("https://onepiece.fandom.com/wiki/Nami")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")[4..5].text
+        @@bios << nami
+    end
+
+    def self.usopp
+        url = open("https://onepiece.fandom.com/wiki/Usopp")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+        #@@bios << usopp
+    end
+
+    def self.vinsmoke_sanji
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+        #@@bios << sanji
+    end
+
+    def self.tony_tony_chopper
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+        #@@bios << chopper
+    end
+
+    def self.nico_robin
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+       # @@bios << robin
+    end
+
+    def self.franky
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+       # @@bios << franky
+    end
+
+    def self.brook
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")
+       # @@bios << brook
+    end
+
+    def self.jimbei
+        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        page = Nokogiri::HTML(url)
+        nami = page.css(".mw-content-text").css("p")[4..5]
+       # @@bios << jimbei
+    end
 
 end
 binding.pry
-
-#connecting the href link
-#page.css("a").attr("href").value
-
-
-#devil_fruits.collect do |fruit|
-#fruit.chomp("*")
-#end

@@ -47,13 +47,12 @@ class Menu
             when 'where'
                 puts ""
                 where_to_watch
-            
             end
         end
     end
 
     def summary
-        Scraper.new.summary
+        Scraper.summary
     end#needs delimiters
 
     def episodes
@@ -65,20 +64,29 @@ class Menu
     end
 
     def characters
-         characters = Scraper.new.all_characters
+         puts Scraper.all_characters
+         input = " "
+         while input != 'exit'
          puts ""
-         puts "Hit a number from 1-89 to see a character/groups bio!"
-         #Scraper.new.bios
-    end     # ^^ We need to implement a scraper method that gives us each character bio by index
+         puts "Hit a number from 1-10 to see a character bio!"
+         puts "If you would like to go back to the menu, type '0'"
+         input = gets.strip.to_i
 
-    #def arcs
-    #    lists arcs by index
-     #   puts "Type a number from 1 to whatever to see more about that arc!"
-     #   
-    #end
+            if (1..Scraper.bios.length).include?(input)
+                bio = Scraper.bios[input - 1]
+                puts "#{bio}"
+            elsif input < 1 || input > 10
+                break
+            end
+        end
+    end
+        
+    def arcs
+    
+    end
 
     def fruits
-        Scraper.new.fruits
+        Scraper.fruits
         puts "Choose a number to see more info on those kinds of fruits!"
         # input = gets.strip.to_i
         #if (1..Scraper.devil_fruits).include?(input) <- this means that the devil fruits need to have an index
