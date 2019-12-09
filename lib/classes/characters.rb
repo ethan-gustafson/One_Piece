@@ -23,7 +23,11 @@ class Characters
         end
     end
 
+    def make_bios
+
+    end
+
 end
-#binding.pry
+binding.pry
 
 

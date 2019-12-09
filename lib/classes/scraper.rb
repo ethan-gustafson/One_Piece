@@ -5,7 +5,7 @@ require 'pry'
 class Scraper
 
     @@bios = []
-
+    
     def self.char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
@@ -41,10 +41,6 @@ class Scraper
         characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
     end
 
-    def self.bios
-        @@bios
-    end
-
     def self.fruits 
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
@@ -66,72 +62,76 @@ class Scraper
     def self.luffy
         url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
         page = Nokogiri::HTML(url)
-        luffy = page.css(".mw-content-text").css("p")[4].text
-        @@bios << luffy
+        luffy = page.css(".mw-content-text").css("p")[4]
     end
 
     def self.zoro
         url = open("https://onepiece.fandom.com/wiki/Roronoa_Zoro")
         page = Nokogiri::HTML(url)
-        zoro = page.css(".mw-content-text").css("p")[4..6].text
-        @@bios << zoro
+        zoro = page.css(".mw-content-text").css("p")[4..6]
     end
 
     def self.nami
         url = open("https://onepiece.fandom.com/wiki/Nami")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")[4..5].text
-        @@bios << nami
+        nami = page.css(".mw-content-text").css("p")[4..5]
     end
 
     def self.usopp
         url = open("https://onepiece.fandom.com/wiki/Usopp")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-        #@@bios << usopp
+        usopp = page.css(".mw-content-text").css("p")[4..7]
     end
 
-    def self.vinsmoke_sanji
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+    def self.sanji
+        url = open("https://onepiece.fandom.com/wiki/Sanji")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-        #@@bios << sanji
+        sanji = page.css(".mw-content-text").css("p")[4..6]
     end
 
-    def self.tony_tony_chopper
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+    def self.chopper
+        url = open("https://onepiece.fandom.com/wiki/Tony_Tony_Chopper")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-        #@@bios << chopper
+        chopper = page.css(".mw-content-text").css("p")[4..6]
     end
 
-    def self.nico_robin
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+    def self.robin
+        url = open("https://onepiece.fandom.com/wiki/Nico_Robin")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-       # @@bios << robin
+        robin = page.css(".mw-content-text").css("p")[4..7]
     end
 
     def self.franky
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        url = open("https://onepiece.fandom.com/wiki/Franky")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-       # @@bios << franky
+        franky = page.css(".mw-content-text").css("p")[4..7]
     end
 
     def self.brook
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        url = open("https://onepiece.fandom.com/wiki/Brook")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")
-       # @@bios << brook
+        brook = page.css(".mw-content-text").css("p")[4..7]
     end
 
     def self.jimbei
-        url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
+        url = open("https://onepiece.fandom.com/wiki/Jinbe")
         page = Nokogiri::HTML(url)
-        nami = page.css(".mw-content-text").css("p")[4..5]
-       # @@bios << jimbei
+        jimbei = page.css(".mw-content-text").css("p")[1..3]
     end
 
+    def self.bios
+        @@bios << luffy.text
+        @@bios << zoro.text
+        @@bios << nami.text
+        @@bios << usopp.text
+        @@bios << sanji.text
+        @@bios << chopper.text
+        @@bios << robin.text
+        @@bios << franky.text
+        @@bios << brook.text
+        @@bios << jimbei.text
+        @@bios
+    end
+    
 end
-binding.pry
+#binding.pry
