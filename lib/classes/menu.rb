@@ -10,7 +10,6 @@ class Menu
             puts ""
             puts "To see a summary of the show, type 'summary'."
             puts "Type 'length' to see how many episodes there are in One Piece!"
-            puts "Type 'arcs' to see each story arc of One Piece!"
             puts "Type 'characters' if you would like to see the list of characters!"
             puts "Type 'fruits' if you would lke to see a list of all known Devil Fruits!"
             puts "Type 'haki' to see what Haki is!"
@@ -27,10 +26,6 @@ class Menu
             when 'length'
                 puts ""
                 episodes
-
-            when 'arcs'
-                puts ""
-                arcs
 
             when 'characters'
                 puts ""
@@ -52,7 +47,7 @@ class Menu
     end
 
     def summary
-        Scraper.summary
+        puts Scraper.summary
     end#needs delimiters
 
     def episodes
@@ -80,11 +75,7 @@ class Menu
             end
         end
     end
-        
-    def arcs
     
-    end
-
     def fruits
         Scraper.fruits
         puts "Choose a number to see more info on those kinds of fruits!"

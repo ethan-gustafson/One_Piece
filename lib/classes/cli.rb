@@ -3,7 +3,6 @@ require_relative './characters.rb'
 require_relative './devilfruit.rb'
 require_relative './menu.rb'
 require_relative './effects.rb'
-require_relative './arcs.rb'
 
 class OnePiece::CLI
 

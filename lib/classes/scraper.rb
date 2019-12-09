@@ -18,10 +18,6 @@ class Scraper
         html = "https://myanimelist.net/featured/781/The_3_Different_Types_of_One_Piece_Haki"
     end
 
-    def self.arcs_page
-        html = "https://onepiece.fandom.com/wiki/Story_Arcs"
-    end
-
     def self.summary
         url = open(char_page)
         page = Nokogiri::HTML(url)
@@ -29,7 +25,7 @@ class Scraper
         summary = page.search(".mw-parser-output").map do |div|
             div.at('p').text.strip
         end
-        summary
+        summary.to_s
     end
 
     def self.all_characters
@@ -134,4 +130,5 @@ class Scraper
     end
     
 end
-#binding.pry
+
+binding.pry

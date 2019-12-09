@@ -27,6 +27,6 @@ class Characters
     end
 
 end
-binding.pry
+#binding.pry
 
 
