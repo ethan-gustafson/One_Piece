@@ -1,29 +1,31 @@
 require 'pry'
 require_relative './scraper.rb'
-require_relative './characters.rb'
+class Devilfruit
 
-class DevilFruit
-
-    attr_accessor :type, :fruit_name
-    @@all = []
-
-    def initialize(type, fruit_name)
-        @type = type
-        @fruit_name = fruit_name
+attr_accessor :name, :bio
+@@all = []
+    
+    def initialize(name)
+        @name = name
         @@all << self
+    end
+
+    def self.fruits
+        paramecia = Devilfruit.new("1. Paramecia")
+            paramecia.bio=(Scraper.paramecia)
+
+        zoan = Devilfruit.new("2. Zoan")
+            zoan.bio=(Scraper.zoan)
+
+        logia = Devilfruit.new("3. Logia")
+            logia.bio=(Scraper.logia)
+            @@all << self
     end
 
     def self.all
         @@all
     end
 
-    def fruits    
-        devil_fruits = ["Logia", "Paramecia", "Zoan"]
-        devil_fruits.each.with_index(1) do |fruit, index|
-            puts "#{index}. #{fruit}"
-        end
-    end
-
 end
 
-
+binding.pry

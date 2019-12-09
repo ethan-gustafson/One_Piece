@@ -5,17 +5,13 @@ require 'pry'
 class Scraper
 
     @@bios = []
-    
+    @@fruits = []
     def self.char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
 
     def self.fruits_page
-        html = "https://onepiece.fandom.com/wiki/Devil_Fruit"
-    end
-
-    def self.haki_page
-        html = "https://myanimelist.net/featured/781/The_3_Different_Types_of_One_Piece_Haki"
+        html = "https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"
     end
 
     def self.summary
@@ -34,25 +30,37 @@ class Scraper
         characters_array = page.css(".mw-headline")
 
         characters = characters_array[2..11].collect{|character| character}
-        characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
+        char = characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
     end
 
-    def self.fruits 
+    def self.fruits_bio
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".mw-content-text")
-    end
-        
-    def self.haki_info
-        url = open(haki_page)
-        page = Nokogiri::HTML(url)
-        sections = page.css(".content.clearfix.featured-article-body").css("h1").text
+        devil_fruits = page.css(".wrapper").css("p")[0..4].text
     end
 
-    def self.arcs
-        url = open(arcs_page)
+    def self.paramecia
+        url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        arcs = page.css(".mw-content-text").attr("href")
+        devil_fruits = page.css(".wrapper").css("p")[10].text
+    end
+
+    def self.zoan
+        url = open(fruits_page)
+        page = Nokogiri::HTML(url)
+        devil_fruits = page.css(".wrapper").css("p")[14].text
+    end
+
+    def self.logia
+        url = open(fruits_page)
+        page = Nokogiri::HTML(url)
+        devil_fruits = page.css(".wrapper").css("p")[20].text
+    end
+ 
+    def self.haki
+        url = open("https://onepiece.fandom.com/wiki/Haki")
+        page = Nokogiri::HTML(url)
+        haki = page.css(".mw-content-text").css("p")[0].text
     end
 
     def self.luffy
@@ -128,7 +136,12 @@ class Scraper
         @@bios << jimbei.text
         @@bios
     end
-    
-end
 
-binding.pry
+    def self.fruits
+        @@fruits << paramecia
+        @@fruits << zoan
+        @@fruits << logia
+        @@fruits
+    end
+       
+end
