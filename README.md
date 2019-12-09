@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The gem includes the anime's characters, devil fruits information, haki description, episode count and where to watch the show!
 
 ## Development
 
