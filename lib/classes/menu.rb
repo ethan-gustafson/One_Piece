@@ -49,55 +49,40 @@ class Menu
     def summary
         puts Scraper.summary
         input = " "
-        while input != 'menu'
+        while input != ""
             puts ""
-            puts "Type 'menu' to go back to the menu!"
+            puts "Hit enter to go back to the menu!"
             input = gets.strip
-
-            case input 
-            when 'menu'
-                menu
-            end
         end
     end
 
     def episodes
         puts "There are 913 episodes as of December 7th, 2019."
         input = " "
-        while input != 'menu'
+        while input != ""
             puts ""
-            puts "Type 'menu' to go back to the menu!"
+            puts "Hit enter to go back to the menu!"
             input = gets.strip
-
-            case input 
-            when 'menu'
-                menu
-            end
         end
     end
 
     def where_to_watch
         puts "You can find One Piece on Crunchyroll, Funimation or Hulu!"
         input = " "
-        while input != 'menu'
+        while input != ""
             puts ""
-            puts "Type 'menu' to go back to the menu!"
+            puts "Hit enter to go back to the menu!"
             input = gets.strip
-
-            case input 
-            when 'menu'
-                menu
-            end
         end
     end
 
     def characters
          puts Scraper.all_characters
          input = " "
-         while input != 'exit'
+         while input != '0'
          puts ""
          puts "Hit a number from 1-10 to see a character bio!"
-         puts "If you would like to go back to the menu, type '0'"
+         puts "If you would like to go back to the menu, type '0' or hit enter!"
          input = gets.strip.to_i
 
             if (1..Scraper.bios.length).include?(input)
@@ -134,15 +119,10 @@ class Menu
     def haki
        puts Scraper.haki
        input = " "
-        while input != 'menu'
+        while input != ""
             puts ""
-            puts "Type 'menu' to go back to the menu!"
+            puts "Hit enter to go back to the menu!"
             input = gets.strip
-
-            case input 
-            when 'menu'
-                menu
-            end
         end
     end
 
