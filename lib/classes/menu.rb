@@ -101,7 +101,7 @@ class Menu
         Devilfruit.all.each.with_index(1) do |fruit, index|
             puts " #{index}. #{fruit.name}" 
         end 
-        
+        # Everything from line 113 to 121 is screwed up. Everything else works.
         input = " "
         while input != 'exit'
             puts ""
