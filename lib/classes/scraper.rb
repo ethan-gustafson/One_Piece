@@ -7,6 +7,7 @@ class Scraper
 
     @@bios = []
     @@fruits = []
+    
     def self.char_page
         html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
     end
@@ -134,28 +135,6 @@ class Scraper
         jimbei = page.css(".mw-content-text").css("p")[1..3].text
         jimbei.gsub(/\[.*?\]/, "").colorize(:magenta)
     end
-
-    def self.bios
-        @@bios << luffy
-        @@bios << zoro
-        @@bios << nami
-        @@bios << usopp
-        @@bios << sanji
-        @@bios << chopper
-        @@bios << robin
-        @@bios << franky
-        @@bios << brook
-        @@bios << jimbei
-        @@bios
-    end
-
-    def self.fruits
-        @@fruits << paramecia
-        @@fruits << zoan
-        @@fruits << logia
-        @@fruits
-    end
        
 end
 
-#binding.pry

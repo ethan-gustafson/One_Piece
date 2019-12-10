@@ -1,5 +1,6 @@
 require 'pry'
-
+require_relative './characters.rb'
+require_relative './devilfruit.rb'
 class Menu
 
     def menu
@@ -97,21 +98,24 @@ class Menu
     def fruits
         puts Scraper.fruits_bio
         puts ""
-        devil_fruits = ["1. Paramecia", "2. Zoan", "3. Logia"]
-        puts devil_fruits
+        Devilfruit.all.each.with_index(1) do |fruit, index|
+            puts " #{index}. #{fruit.name}" 
+        end 
+        
         input = " "
         while input != 'exit'
             puts ""
             puts "Choose a Devil Fruit(#1-3) to see its abilities!"
             puts "If you would like to go back to the menu, type '0'"
             input = gets.strip.to_i
-
-            if (1..devil_fruits.length).include?(input)
-                fruits = Scraper.fruits[input - 1]
-                puts ""
-                puts "#{fruits}"
-            elsif input < 1 || input > 3
-                break
+            if input < 1 || input > 3
+            break
+                if (1..Devilfruit.all.size).include?(input)
+                    Devilfruit.all.select do |fruit|
+                        puts "#{fruit.bio}"[input - 1]
+                        puts ""
+                    end
+                end
             end
         end
     end
@@ -128,4 +132,4 @@ class Menu
 
 end
 
-binding.pry
+# binding.pry
