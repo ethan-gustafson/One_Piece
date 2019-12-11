@@ -32,14 +32,14 @@ class Scraper
         characters_array = page.css(".mw-headline")
 
         characters = characters_array[2..11].collect{|character| character}
-        char = characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}"}
+        char = characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}".colorize(:red)}
     end
 
     def self.haki
         url = open("https://onepiece.fandom.com/wiki/Haki")
         page = Nokogiri::HTML(url)
         haki = page.css(".mw-content-text").css("p")[0].text
-        haki.gsub(/\[.*?\]/, "")
+        haki.gsub(/\[.*?\]/, "").colorize(:blue)
     end
 
     def self.fruits_bio
@@ -158,5 +158,3 @@ class Scraper
     end
        
 end
-
-# binding.pry

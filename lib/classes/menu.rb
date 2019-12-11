@@ -1,4 +1,5 @@
 require 'pry'
+require 'colorize'
 require_relative './characters.rb'
 require_relative './devilfruit.rb'
 class Menu
@@ -58,7 +59,7 @@ class Menu
     end
 
     def episodes
-        puts "There are 913 episodes as of December 7th, 2019."
+        puts "There are 913 episodes as of December 7th, 2019.".colorize(:light_blue)
         input = " "
         while input != ""
             puts ""
@@ -68,7 +69,7 @@ class Menu
     end
 
     def where_to_watch
-        puts "You can find One Piece on Crunchyroll, Funimation or Hulu!"
+        puts "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
         input = " "
         while input != ""
             puts ""
@@ -100,7 +101,7 @@ class Menu
         puts Scraper.fruits_bio
         puts ""
         Devilfruit.all.each.with_index(1) do |fruit, index|
-            puts "#{index}. #{fruit.name}"
+            puts "#{index}. #{fruit.name}".colorize(:green)
         end
         input = " "
         while input != '0'
