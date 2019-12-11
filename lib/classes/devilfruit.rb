@@ -16,10 +16,10 @@ attr_accessor :name, :bio
 
 end
 
-        paramecia = Devilfruit.new("Paramecia")
-        zoan = Devilfruit.new("Zoan")
-        logia = Devilfruit.new("Logia")
+paramecia = Devilfruit.new("Paramecia")
+zoan = Devilfruit.new("Zoan")
+logia = Devilfruit.new("Logia")
 
-        paramecia.bio=(Scraper.paramecia)
-        zoan.bio=(Scraper.zoan)
-        logia.bio=(Scraper.logia)
+paramecia.bio=(Scraper.paramecia)
+zoan.bio=(Scraper.zoan)
+logia.bio=(Scraper.logia)

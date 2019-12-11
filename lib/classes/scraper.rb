@@ -21,7 +21,7 @@ class Scraper
         page = Nokogiri::HTML(url)
         
         summary = page.search(".mw-parser-output").map do |div|
-            div.at('p').text.strip.colorize(:green)
+            div.at('p').text.strip.gsub(/\[.*?\]/, "").colorize(:green)
         end
         summary
     end

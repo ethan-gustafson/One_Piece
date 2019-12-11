@@ -1,4 +1,3 @@
-require 'pry'
 require_relative './characters.rb'
 require_relative './devilfruit.rb'
 require_relative './menu.rb'
