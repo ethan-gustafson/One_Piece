@@ -45,4 +45,5 @@ brook.bio=(Scraper.brook)
 
 jimbei = Character.new("Jimbei")
 jimbei.bio=(Scraper.jimbei)
-#binding.pry
+
+

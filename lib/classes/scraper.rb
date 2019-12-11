@@ -150,13 +150,13 @@ class Scraper
         @@bios
     end
 
-    # def self.fruits
-    #     @@fruits << paramecia
-    #     @@fruits << zoan
-    #     @@fruits << logia
-    #     @@fruits
-    # end
+    def self.fruits
+        @@fruits << paramecia
+        @@fruits << zoan
+        @@fruits << logia
+        @@fruits
+    end
        
 end
 
-#binding.pry
+# binding.pry

@@ -98,25 +98,17 @@ class Menu
     def fruits
         puts Scraper.fruits_bio
         puts ""
-        Devilfruit.all.each.with_index(1) do |fruit, index|
-            puts " #{index}. #{fruit.name}" 
-        end 
-        # Everything from line 113 to 121 is screwed up. Everything else works.
-        input = " "
-        while input != 'exit'
-            puts ""
-            puts "Choose a Devil Fruit(#1-3) to see its abilities!"
-            puts "If you would like to go back to the menu, type '0'"
-            input = gets.strip.to_i
-            if input < 1 || input > 3
-            break
-                if (1..Devilfruit.all.size).include?(input)
-                    Devilfruit.all.select do |fruit|
-                        puts "#{fruit.bio}"[input - 1]
-                        puts ""
-                    end
-                end
-            end
+        fruits = Devilfruit.all.each.with_index(1) do |fruit, index|
+            puts "#{index}. #{fruit.name}" 
+            
+        # input = " "
+        #     while input != '0'
+        #         puts ""
+        #         puts "Choose a Devil Fruit(#1-3) to see its abilities!"
+        #         puts "If you would like to go back to the menu, type '0'"
+        #         input = gets.strip.to_i
+
+        #     end
         end
     end
 
