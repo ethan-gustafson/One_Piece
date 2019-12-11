@@ -1,7 +1,7 @@
 require 'pry'
 require_relative './scraper.rb'
 class Devilfruit
-
+    
 attr_accessor :name, :bio
 @@all = []
     
