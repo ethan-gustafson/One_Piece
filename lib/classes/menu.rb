@@ -1,7 +1,6 @@
 require 'pry'
 require 'colorize'
-require_relative './characters.rb'
-require_relative './devilfruit.rb'
+
 class Menu
 
     def menu
@@ -131,6 +130,5 @@ class Menu
             input = gets.strip
         end
     end
-
 end
 
