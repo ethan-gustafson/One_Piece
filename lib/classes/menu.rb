@@ -84,11 +84,12 @@ class Menu
          puts ""
          puts "Hit a number from 1-10 to see a character bio!"
          puts "If you would like to go back to the menu, type '0' or hit enter!"
+         bios = Character.all
          input = gets.strip.to_i
 
-            if (1..Scraper.bios.length).include?(input)
-                bio = Scraper.bios[input - 1]
-                puts "#{bio}"
+            if (1..Character.all.length).include?(input)
+                character = bios[input - 1]
+                puts "#{character.bio}"
             elsif input < 1 || input > 10
                 break
             end
@@ -98,17 +99,23 @@ class Menu
     def fruits
         puts Scraper.fruits_bio
         puts ""
-        fruits = Devilfruit.all.each.with_index(1) do |fruit, index|
-            puts "#{index}. #{fruit.name}" 
-            
-        # input = " "
-        #     while input != '0'
-        #         puts ""
-        #         puts "Choose a Devil Fruit(#1-3) to see its abilities!"
-        #         puts "If you would like to go back to the menu, type '0'"
-        #         input = gets.strip.to_i
+        Devilfruit.all.each.with_index(1) do |fruit, index|
+            puts "#{index}. #{fruit.name}"
+        end
+        input = " "
+        while input != '0'
+            puts ""
+            puts "Choose a Devil Fruit(#1-3) to see its abilities!"
+            puts "If you would like to go back to the menu, type '0'"
+            bios = Devilfruit.all
+            input = gets.strip.to_i
 
-        #     end
+            if (1..Devilfruit.all.length).include?(input)
+                fruit = bios[input - 1]
+                puts "#{fruit.bio}"
+            elsif input < 1 || input > 3
+                break
+            end
         end
     end
 
@@ -124,4 +131,3 @@ class Menu
 
 end
 
-# binding.pry

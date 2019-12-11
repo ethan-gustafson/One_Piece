@@ -14,13 +14,6 @@ attr_accessor :name, :bio
         @@all
     end
 
-    # def self.find_by_bio(bio)
-    #     character = @@all.filter do |c|
-    #         c.bio == bio
-    #     end
-    # end
-
-
 end
 
         paramecia = Devilfruit.new("Paramecia")
@@ -30,4 +23,3 @@ end
         paramecia.bio=(Scraper.paramecia)
         zoan.bio=(Scraper.zoan)
         logia.bio=(Scraper.logia)
-        #binding.pry
