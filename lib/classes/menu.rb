@@ -79,7 +79,9 @@ class Menu
     end
 
     def characters
-         puts Scraper.all_characters
+        Character.all.each.with_index(1) do |c, index|
+            puts "#{index}. #{c.name}".colorize(:red)
+        end
          input = " "
          while input != '0'
          puts ""
