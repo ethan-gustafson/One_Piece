@@ -1,14 +1,13 @@
-require_relative './characters.rb'
-require_relative './devilfruit.rb'
-require_relative './menu.rb'
-require_relative './effects.rb'
-
-class OnePiece::CLI
+class CLI
 
     def call
         Effects.new.logo
+        Scraper.all_char
         Menu.new.menu
     end
 
 end
+
     
+#I definitely need help with the environment file.
+

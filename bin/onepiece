@@ -1,9 +1,5 @@
-#!/cli-project-onepiece/bin/env ruby
+#!/usr/bin/env ruby
 
-require "bundler/setup"
-require 'classes/cli.rb'
-require 'classes/characters.rb'
-require 'classes/devilfruit.rb'
-require "classes/scraper.rb"
+require_relative '../config/environment.rb'
 
-OnePiece::CLI.new.call
+CLI.new.call

@@ -1,7 +1,4 @@
-require 'pry'
-require 'colorize'
-
-class Menu
+class Menu 
 
     def menu
         
@@ -47,8 +44,7 @@ class Menu
         end
     end
 
-    def summary
-        puts Scraper.summary
+    def input
         input = " "
         while input != ""
             puts ""
@@ -57,42 +53,38 @@ class Menu
         end
     end
 
+    def summary
+        puts Scraper.summary
+        input
+    end 
+
     def episodes
         puts "There are 913 episodes as of December 7th, 2019.".colorize(:light_blue)
-        input = " "
-        while input != ""
-            puts ""
-            puts "Hit enter to go back to the menu!"
-            input = gets.strip
-        end
+        input
     end
 
     def where_to_watch
         puts "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
-        input = " "
-        while input != ""
-            puts ""
-            puts "Hit enter to go back to the menu!"
-            input = gets.strip
-        end
+        input
     end
 
     def characters
         Character.all.each.with_index(1) do |c, index|
             puts "#{index}. #{c.name}".colorize(:red)
         end
+
          input = " "
          while input != '0'
          puts ""
          puts "Hit a number from 1-10 to see a character bio!"
          puts "If you would like to go back to the menu, type '0' or hit enter!"
-         bios = Character.all
          input = gets.strip.to_i
 
             if (1..Character.all.length).include?(input)
-                character = bios[input - 1]
+                character = Character.all[input - 1]
+                Scraper.grab_bio(character)
                 puts "#{character.bio}"
-            elsif input < 1 || input > 10
+            else
                 break
             end
         end
@@ -104,6 +96,7 @@ class Menu
         Devilfruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
         end
+
         input = " "
         while input != '0'
             puts ""
@@ -115,7 +108,7 @@ class Menu
             if (1..Devilfruit.all.length).include?(input)
                 fruit = bios[input - 1]
                 puts "#{fruit.bio}"
-            elsif input < 1 || input > 3
+            else
                 break
             end
         end
@@ -123,12 +116,9 @@ class Menu
 
     def haki
        puts Scraper.haki
-       input = " "
-        while input != ""
-            puts ""
-            puts "Hit enter to go back to the menu!"
-            input = gets.strip
-        end
+       input
     end
+
+
 end
 

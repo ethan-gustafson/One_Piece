@@ -1,35 +1,17 @@
-require 'open-uri'
-require 'nokogiri'
-require 'colorize'
-require 'pry'
-
 class Scraper
-
-    def self.char_page
-        html = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
-    end
 
     def self.fruits_page
         html = "https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"
     end
 
     def self.summary
-        url = open(char_page)
+        url = open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters")
         page = Nokogiri::HTML(url)
         
         summary = page.search(".mw-parser-output").map do |div|
             div.at('p').text.strip.gsub(/\[.*?\]/, "").colorize(:green)
         end
         summary
-    end
-
-    def self.all_characters
-        url = open(char_page)
-        page = Nokogiri::HTML(url)
-        characters_array = page.css(".mw-headline")
-
-        characters = characters_array[2..11].collect{|character| character}
-        char = characters.collect.with_index(1){ |character,index| "#{index}. #{character.attributes.values[1]}".colorize(:red)}
     end
 
     def self.haki
@@ -48,20 +30,42 @@ class Scraper
     def self.paramecia
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".wrapper").css("p")[10].text.colorize(:red)
+        paramecia = page.css(".wrapper").css("p")[10].text.colorize(:red)
     end
 
     def self.zoan
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".wrapper").css("p")[14].text.colorize(:blue)
+        zoan = page.css(".wrapper").css("p")[14].text.colorize(:blue)
     end
 
     def self.logia
         url = open(fruits_page)
         page = Nokogiri::HTML(url)
-        devil_fruits = page.css(".wrapper").css("p")[20].text.colorize(:yellow)
+        logia = page.css(".wrapper").css("p")[20].text.colorize(:yellow)
     end
+
+    def self.all_char
+        site = "https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"
+        url1 = open(site)
+        page = Nokogiri::HTML(url1)
+        char_node = page.css("table.cs.StrawHatPiratesColors").css("tr")[3].css("a") + page.css("table.cs.StrawHatPiratesColors").css("tr")[5].css("a")
+
+        char_node.collect.with_index(1) do |node, index|
+            url = node.attributes["href"].value
+            num_bios = 4
+            Character.new(node.text, url, num_bios)
+        end
+    end
+
+    def self.grab_bio(character)
+        site = "https://onepiece.fandom.com" + character.url 
+        url = open(site)
+        page = Nokogiri::HTML(url)
+        char = page.css(".mw-content-text").css("p")[character.num_bios].text
+        character.bio= char.gsub(/\[.*?\]/, "")
+    end #character.start_index
+    #character.end_index
 
     def self.luffy
         url = open("https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
