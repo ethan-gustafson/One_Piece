@@ -119,6 +119,5 @@ class Menu
        input
     end
 
-
 end
 
