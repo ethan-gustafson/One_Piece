@@ -76,7 +76,7 @@ class Menu
          input = " "
          while input != '0'
          puts ""
-         puts "Hit a number from 1-10 to see a character bio!"
+         puts "Hit a number from (#1-10) to see a character bio!"
          puts "If you would like to go back to the menu, type '0' or hit enter!"
          input = gets.strip.to_i
 
@@ -102,11 +102,11 @@ class Menu
             puts ""
             puts "Choose a Devil Fruit(#1-3) to see its abilities!"
             puts "If you would like to go back to the menu, type '0'"
-            bios = Devilfruit.all
             input = gets.strip.to_i
 
             if (1..Devilfruit.all.length).include?(input)
-                fruit = bios[input - 1]
+                fruit = Devilfruit.all[input - 1]
+                Scraper.grab_fruitsbio(fruit)
                 puts "#{fruit.bio}"
             else
                 break

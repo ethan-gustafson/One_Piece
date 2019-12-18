@@ -1,12 +1,11 @@
 class Character
 
-attr_accessor :name, :bio, :url, :num_bios
+attr_accessor :name, :bio, :url, :start_i, :end_i
 @@all = []
 
-    def initialize(name, url, num_bios)
+    def initialize(name, url)
         @name = name
         @url = url
-        @num_bios = num_bios
         @@all << self
     end
 
