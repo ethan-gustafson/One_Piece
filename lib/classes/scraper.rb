@@ -31,13 +31,13 @@ class Scraper
         char_node = page.css('#mw-content-text > ul')[5].css('li b a')
         char_node.collect.with_index do |node, index|
              url = node.attributes["href"].value
-             fruits =Devilfruit.new(node.text, url)
-             if index == 0
+             fruits = Devilfruit.new(node.text, url)
+             if index == 0 
                 fruits.start_i = 1
                 fruits.end_i = 1 
-            elsif index == 1  
-                fruits.start_i = 1  
-                fruits.end_i = 1 
+             elsif index == 1
+                fruits.start_i = 0
+                fruits.end_i = 2
             elsif index == 2  
                 fruits.start_i = 2  
                 fruits.end_i = 2
@@ -49,8 +49,16 @@ class Scraper
         site = "https://onepiece.fandom.com" + fruit.url 
         url = open(site)
         page = Nokogiri::HTML(url)
-        devilfruit = page.css('.mw-content-text').css("p")[fruit.start_i..fruit.end_i].text
-        fruit.bio=(devilfruit.gsub(/\[.*?\]/, ""))
+        selector = page.css('.mw-content-text')
+        devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
+        zoan = selector.css('.mw-content-text').css('li')[fruit.start_i..fruit.end_i].text
+        Devilfruit.all.each.with_index do |fruit, index|
+            if index == 0 || 3
+                fruit.bio= devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
+            elsif index == 1
+                fruit.bio=zoan.gsub(/\[.*?\]/, "").colorize(:green)
+            end
+        end
     end
 
     def self.all_char
@@ -68,13 +76,13 @@ class Scraper
             elsif index == 1 || index == 4 || index == 5  
                 character.start_i = 4  
                 character.end_i = 6 
-            elsif 2
+            elsif index == 2
                 character.start_i = 4
                 character.end_i = 5 
-            elsif 3 || 6 || 7 || 8
+            elsif index == 3 || index == 6 || index == 7 || index == 8
                 character.start_i = 4
                 character.end_i = 7 
-            elsif 9
+            elsif index == 9
                 character.start_i = 1
                 character.end_i = 3 
             end
@@ -86,7 +94,7 @@ class Scraper
         url = open(site)
         page = Nokogiri::HTML(url)
         char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
-        character.bio=(char.gsub(/\[.*?\]/, ""))
+        character.bio=(char.gsub(/\[.*?\]/, "")).colorize(:blue)
     end 
     
 
