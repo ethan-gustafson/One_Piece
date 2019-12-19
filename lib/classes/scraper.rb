@@ -53,10 +53,12 @@ class Scraper
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
         zoan = selector.css('.mw-content-text').css('li')[0..2].text
         Devilfruit.all.each.with_index do |fruit, index|
-            if index == 0 || index == 2
+            if index == 0
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
             elsif index == 1
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
+            elsif index == 2
+                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:yellow)
             end
         end
     end
