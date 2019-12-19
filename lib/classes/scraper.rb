@@ -18,7 +18,7 @@ class Scraper
         haki.gsub(/\[.*?\]/, "").colorize(:blue)
     end
 
-    def self.fruits_bio
+    def self.fruits_info
         url = open("https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users")
         page = Nokogiri::HTML(url)
         devil_fruits = page.css(".wrapper").css("p")[0..4].text.colorize(:red)
@@ -99,5 +99,4 @@ class Scraper
         character.bio=(char.gsub(/\[.*?\]/, "")).colorize(:blue)
     end 
     
-
 end

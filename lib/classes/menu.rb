@@ -91,7 +91,7 @@ class Menu
     end
 
     def fruits
-        puts Scraper.fruits_bio
+        puts Scraper.fruits_info
         puts ""
         Devilfruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
