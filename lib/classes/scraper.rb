@@ -37,7 +37,7 @@ class Scraper
                 fruits.end_i = 1 
              elsif index == 1
                 fruits.start_i = 0
-                fruits.end_i = 2
+                fruits.end_i = 1
             elsif index == 2  
                 fruits.start_i = 2  
                 fruits.end_i = 2
@@ -51,12 +51,12 @@ class Scraper
         page = Nokogiri::HTML(url)
         selector = page.css('.mw-content-text')
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
-        zoan = selector.css('.mw-content-text').css('li')[fruit.start_i..fruit.end_i].text
+        zoan = selector.css('.mw-content-text').css('li')[0..2].text
         Devilfruit.all.each.with_index do |fruit, index|
-            if index == 0 || 3
-                fruit.bio= devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
+            if index == 0 || index == 2
+                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
             elsif index == 1
-                fruit.bio=zoan.gsub(/\[.*?\]/, "").colorize(:green)
+                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
             end
         end
     end
