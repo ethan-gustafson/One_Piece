@@ -1,6 +1,5 @@
 class Scraper
 
-
     def self.summary
         url = open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters")
         page = Nokogiri::HTML(url)
@@ -28,8 +27,8 @@ class Scraper
         site = "https://onepiece.fandom.com/wiki/Devil_Fruit"
         url1 = open(site)
         page = Nokogiri::HTML(url1)
-        char_node = page.css('#mw-content-text > ul')[5].css('li b a')
-        char_node.collect.with_index do |node, index|
+        fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
+        fruit_node.collect.with_index do |node, index|
              url = node.attributes["href"].value
              fruits = Devilfruit.new(node.text, url)
              if index == 0 
@@ -51,7 +50,7 @@ class Scraper
         page = Nokogiri::HTML(url)
         selector = page.css('.mw-content-text')
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
-        zoan = selector.css('.mw-content-text').css('li')[0..2].text
+        zoan = selector.css('li')[0..2].text
         Devilfruit.all.each.with_index do |fruit, index|
             if index == 0
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)

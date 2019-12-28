@@ -9,3 +9,4 @@ require_relative '../lib/classes/characters.rb'
 require_relative '../lib/classes/devilfruit.rb'
 require_relative '../lib/classes/effects.rb'
 require_relative '../lib/classes/version.rb'
+
