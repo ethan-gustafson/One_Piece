@@ -1,10 +1,10 @@
 # OnePiece
 
-This gem is a command line interface that will introduce you to the worlds best selling manga and anime, One Piece!
+This is a command line interface that will introduce you to the worlds best selling manga and anime, One Piece!
 
 ## Installation
-
-Add this line to your application's Gemfile:
+NOTE: If you would like to run this application, you will have to clone this repository into your terminal, then run bin/onepiece.
+<!-- Add this line to your application's Gemfile:
 
 ```ruby
 gem 'one_piece'
@@ -16,11 +16,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install one_piece
+    $ gem install one_piece -->
 
 ## Usage
 
-The gem includes the anime's characters, devil fruits information, haki description, episode count and where to watch the show!
+The CLI includes the anime's characters, devil fruits information, haki description, episode count and where to watch the show!
 
 ## Development
 
