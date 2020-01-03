@@ -59,7 +59,7 @@ class Menu
     end 
 
     def episodes
-        puts "There are 913 episodes as of December 7th, 2019.".colorize(:light_blue)
+        puts Scraper.episode_list
         input
     end
 

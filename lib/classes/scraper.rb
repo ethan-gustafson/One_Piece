@@ -97,5 +97,14 @@ class Scraper
         char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
         character.bio=(char.gsub(/\[.*?\]/, "")).colorize(:blue)
     end 
+
+    def self.episode_list
+        site = "https://onepiece.fandom.com/wiki/Episode_Guide"
+        url = open(site)
+        page = Nokogiri::HTML(url)
+        ep = page.css(".mw-content-text").css("p")[0].text.split('.')
+        episode_count = ep[1].to_s + ('.')
+        episode_count.colorize(:red)
+    end
     
 end
