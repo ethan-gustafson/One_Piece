@@ -1,0 +1,7 @@
+#!/cli-project-onepiece/bin/env ruby
+
+
+require "bundler/setup"
+require "destinations"
+
+OnePiece::CLI.new
