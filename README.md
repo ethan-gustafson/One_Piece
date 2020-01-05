@@ -4,6 +4,8 @@ This is a command line interface that will introduce you to the worlds best sell
 
 ## Installation
 NOTE: If you would like to run this application, you will have to clone this repository into your terminal, then run bin/onepiece.
+
+Or if you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 <!-- Add this line to your application's Gemfile:
 
 ```ruby
