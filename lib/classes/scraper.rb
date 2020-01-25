@@ -72,8 +72,8 @@ class Scraper
             url = node.attributes["href"].value 
             character = Character.new(node.text, url)
             if index == 0
-                character.start_i = 4
-                character.end_i = 4 
+                character.start_i = 5
+                character.end_i = 5 
             elsif index == 1 || index == 4 || index == 5  
                 character.start_i = 4  
                 character.end_i = 6 

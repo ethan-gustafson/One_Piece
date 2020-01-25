@@ -1,5 +1,5 @@
 require 'bundler'
-Bundler.require
+Bundler.require(:default)
 
 require 'thor'
 require 'nokogiri'
@@ -8,5 +8,3 @@ require 'colorize'
 require 'pry'
 
 require_all 'lib'
-
-

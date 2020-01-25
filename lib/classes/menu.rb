@@ -1,6 +1,8 @@
+require 'pry'
 class Menu 
 
     def menu
+        Effects.new.logo
         
         input = " "
         while input != "exit"
@@ -81,7 +83,7 @@ class Menu
          input = gets.strip.to_i
 
             if (1..Character.all.length).include?(input)
-                character = Character.all[input - 1]
+                character = Character.all[input - 1] # input is a number. This [] is an index.
                 Scraper.grab_bio(character)
                 puts "#{character.bio}"
             else
