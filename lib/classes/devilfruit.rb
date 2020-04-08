@@ -1,13 +1,8 @@
+require_relative '../modules/instance_methods.rb'
 class Devilfruit
-    
-attr_accessor :name, :bio, :url, :start_i, :end_i
-@@all = []
-    
-    def initialize(name, url)
-        @name = name
-        @url = url
-        @@all << self
-    end
+    include InstanceMethods
+
+    @@all = []
 
     def self.all
         @@all

@@ -1,13 +1,8 @@
+require_relative '../modules/instance_methods.rb'
 class Character
+    include InstanceMethods
 
-attr_accessor :name, :bio, :url, :start_i, :end_i
-@@all = []
-
-    def initialize(name, url)
-        @name = name
-        @url = url
-        @@all << self
-    end
+    @@all = []
 
     def self.all
         @@all
