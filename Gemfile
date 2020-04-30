@@ -4,6 +4,6 @@ source "https://rubygems.org"
 gemspec
 gem 'pry'
 gem "rspec"
-gem 'nokogiri', '1.10'
+gem 'nokogiri', '1.10.8'
 gem 'thor'
 gem 'require_all'
