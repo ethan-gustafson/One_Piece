@@ -45,7 +45,7 @@ class Scraper
             when 3 # Mythical Zoan 
                 fruits.start_i = 16
                 fruits.end_i = 18
-            when 4 # Artificial Zoan -> Needs fix but it is on the right page
+            when 4 # Artificial Zoan 
                 fruits.start_i = 0
                 fruits.end_i = 2
             when 5 # Logia 
