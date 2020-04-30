@@ -1,6 +1,6 @@
 # One Piece
+### This is a command line interface that will introduce you to the worlds best selling manga and anime, One Piece!
 ![Imgur_One_Piece](https://i.imgur.com/njfm5wA.jpg)
-This is a command line interface that will introduce you to the worlds best selling manga and anime, One Piece!
 
 ## Installation
 NOTE: If you would like to run this application, you will have to:
