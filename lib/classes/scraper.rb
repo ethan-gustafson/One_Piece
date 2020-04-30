@@ -29,17 +29,22 @@ class Scraper
         page = Nokogiri::HTML(url1)
         fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
         fruit_node.collect.with_index do |node, index|
-             url = node.attributes["href"].value
-             fruits = Devilfruit.new(node.text, url)
-             if index == 0 
-                fruits.start_i = 1
+            url = node.attributes["href"].value
+            fruits = Devilfruit.new(node.text, url)
+            case index 
+
+            when 0 
+                fruits.start_i = 0
                 fruits.end_i = 1 
-             elsif index == 1
+            when 1
                 fruits.start_i = 0
                 fruits.end_i = 1
-            elsif index == 2  
+            when 2  
                 fruits.start_i = 2  
                 fruits.end_i = 2
+            # elsif index == 3
+            # elsif index == 4
+            # elsif index == 5
             end
         end
     end
@@ -52,11 +57,13 @@ class Scraper
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
         zoan = selector.css('li')[0..2].text
         Devilfruit.all.each.with_index do |fruit, index|
-            if index == 0
+            case index 
+                
+            when 0
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
-            elsif index == 1
+            when 1
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
-            elsif index == 2
+            when 2, 3, 4, 5
                 fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:yellow)
             end
         end
@@ -71,19 +78,21 @@ class Scraper
         char_node.collect.with_index do |node, index|
             url = node.attributes["href"].value 
             character = Character.new(node.text, url)
-            if index == 0
+            case index
+    
+            when 0
                 character.start_i = 5
                 character.end_i = 5 
-            elsif index == 1 || index == 4 || index == 5  
+            when 1, 4, 5  
                 character.start_i = 4  
                 character.end_i = 6 
-            elsif index == 2
+            when 2
                 character.start_i = 4
                 character.end_i = 5 
-            elsif index == 3 || index == 6 || index == 7 || index == 8
+            when 3, 6, 7, 8
                 character.start_i = 4
                 character.end_i = 7 
-            elsif index == 9
+            when 9
                 character.start_i = 1
                 character.end_i = 3 
             end

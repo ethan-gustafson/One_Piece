@@ -74,7 +74,7 @@ class Menu
         Character.all.each.with_index(1) do |c, index|
             puts "#{index}. #{c.name}".colorize(:red)
         end
-
+        # binding.pry
          input = " "
          while input != '0'
          puts ""
@@ -98,14 +98,14 @@ class Menu
         Devilfruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
         end
-
+        
         input = " "
         while input != '0'
             puts ""
-            puts "Choose a Devil Fruit(#1-3) to see its abilities!"
+            puts "Choose a Devil Fruit(#1-6) to see its abilities!"
             puts "If you would like to go back to the menu, type '0'"
             input = gets.strip.to_i
-
+            
             if (1..Devilfruit.all.length).include?(input)
                 fruit = Devilfruit.all[input - 1]
                 Scraper.grab_fruitsbio(fruit)
