@@ -1,5 +1,5 @@
 require_relative '../modules/instance_methods.rb'
-class Devilfruit
+class DevilFruit
     include InstanceMethods
 
     @@all = []

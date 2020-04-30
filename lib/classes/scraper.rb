@@ -30,7 +30,7 @@ class Scraper
         fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
         fruit_node.collect.with_index do |node, index|
             url = node.attributes["href"].value
-            fruits = Devilfruit.new(node.text, url)
+            fruits = DevilFruit.new(node.text, url)
             case index 
 
             when 0 
@@ -56,7 +56,7 @@ class Scraper
         selector = page.css('.mw-content-text')
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
         zoan = selector.css('li')[0..2].text
-        Devilfruit.all.each.with_index do |fruit, index|
+        DevilFruit.all.each.with_index do |fruit, index|
             case index 
                 
             when 0

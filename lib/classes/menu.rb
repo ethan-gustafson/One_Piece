@@ -21,104 +21,29 @@ class Menu
 
             when 'summary'
                 puts ""
-                summary
+                MenuOption.summary
 
             when 'length'
                 puts ""
-                episodes
+                MenuOption.episodes
 
             when 'characters'
                 puts ""
-                characters
+                MenuOption.characters
 
             when 'fruits'
                 puts ""
-                fruits
+                MenuOption.fruits
 
             when 'haki'
                 puts ""
-                haki
+                MenuOption.haki
 
             when 'where'
                 puts ""
-                where_to_watch
+                MenuOption.where_to_watch
             end
         end
-    end
-
-    def input
-        input = " "
-        while input != ""
-            puts ""
-            puts "Hit enter to go back to the menu!"
-            input = gets.strip
-        end
-    end
-
-    def summary
-        puts Scraper.summary
-        input
-    end 
-
-    def episodes
-        puts Scraper.episode_list
-        input
-    end
-
-    def where_to_watch
-        puts "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
-        input
-    end
-
-    def characters
-        Character.all.each.with_index(1) do |c, index|
-            puts "#{index}. #{c.name}".colorize(:red)
-        end
-        # binding.pry
-         input = " "
-         while input != '0'
-         puts ""
-         puts "Hit a number from (#1-10) to see a character bio!"
-         puts "If you would like to go back to the menu, type '0' or hit enter!"
-         input = gets.strip.to_i
-
-            if (1..Character.all.length).include?(input)
-                character = Character.all[input - 1] # input is a number. This [] is an index.
-                Scraper.grab_bio(character)
-                puts "#{character.bio}"
-            else
-                break
-            end
-        end
-    end
-
-    def fruits
-        puts Scraper.fruits_info
-        puts ""
-        Devilfruit.all.each.with_index(1) do |fruit, index|
-            puts "#{index}. #{fruit.name}".colorize(:green)
-        end
-        
-        input = " "
-        while input != '0'
-            puts ""
-            puts "Choose a Devil Fruit(#1-6) to see its abilities!"
-            puts "If you would like to go back to the menu, type '0'"
-            input = gets.strip.to_i
-            
-            if (1..Devilfruit.all.length).include?(input)
-                fruit = Devilfruit.all[input - 1]
-                Scraper.grab_fruitsbio(fruit)
-                puts "#{fruit.bio}"
-            else
-                break
-            end
-        end
-    end
-
-    def haki
-       puts Scraper.haki
-       input
     end
 
 end
