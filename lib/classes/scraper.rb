@@ -33,18 +33,24 @@ class Scraper
             fruits = DevilFruit.new(node.text, url)
             case index 
 
-            when 0 
+            when 0 # Paramecia 
                 fruits.start_i = 0
                 fruits.end_i = 1 
-            when 1
+            when 1 # Zoan 
                 fruits.start_i = 0
                 fruits.end_i = 1
-            when 2  
-                fruits.start_i = 2  
+            when 2 # Ancient Zoan 
+                fruits.start_i = 12
+                fruits.end_i = 13
+            when 3 # Mythical Zoan 
+                fruits.start_i = 16
+                fruits.end_i = 18
+            when 4 # Artificial Zoan -> Needs fix but it is on the right page
+                fruits.start_i = 0
                 fruits.end_i = 2
-            # elsif index == 3
-            # elsif index == 4
-            # elsif index == 5
+            when 5 # Logia 
+                fruits.start_i = 2  
+                fruits.end_i = 3
             end
         end
     end
