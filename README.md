@@ -1,14 +1,14 @@
-# OnePiece
-
+# One Piece
+![Imgur_One_Piece](https://i.imgur.com/njfm5wA.jpg)
 This is a command line interface that will introduce you to the worlds best selling manga and anime, One Piece!
 
 ## Installation
 NOTE: If you would like to run this application, you will have to:
 
 1. Clone this repository 
-2. cd into the CLI directory
-3. Run 'bundle install'
-4. Run './bin/onepiece'
+2. `cd` into the CLI directory
+3. Run `bundle install`
+4. Run `./bin/onepiece`
 
 Or if you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 <!-- Add this line to your application's Gemfile:
