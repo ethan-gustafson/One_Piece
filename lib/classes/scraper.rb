@@ -33,12 +33,9 @@ class Scraper
             fruits = DevilFruit.new(node.text, url)
             case index 
 
-            when 0 # Paramecia 
+            when 0, 1 # 1. Paramecia & 2. Zoan
                 fruits.start_i = 0
                 fruits.end_i = 1 
-            when 1 # Zoan 
-                fruits.start_i = 0
-                fruits.end_i = 1
             when 2 # Ancient Zoan 
                 fruits.start_i = 12
                 fruits.end_i = 13
