@@ -1,7 +1,7 @@
 require 'pry'
 class Menu 
 
-    def menu
+    def self.new
         Effects.new.logo
         
         input = " "
