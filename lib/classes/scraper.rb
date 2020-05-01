@@ -2,11 +2,7 @@ class Scraper
 
     def self.summary
         page = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
-        
-        summary = page.search(".mw-parser-output").map do |div|
-            div.at('p').text.strip.gsub(/\[.*?\]/, "").colorize(:green)
-        end
-        summary
+        summary = page.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "").colorize(:green)
     end
 
     def self.haki
