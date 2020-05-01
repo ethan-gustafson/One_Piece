@@ -1,8 +1,7 @@
 class Scraper
 
     def self.summary
-        url = open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters")
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
         
         summary = page.search(".mw-parser-output").map do |div|
             div.at('p').text.strip.gsub(/\[.*?\]/, "").colorize(:green)
@@ -11,22 +10,18 @@ class Scraper
     end
 
     def self.haki
-        url = open("https://onepiece.fandom.com/wiki/Haki")
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open("https://onepiece.fandom.com/wiki/Haki"))
         haki = page.css(".mw-content-text").css("p")[0].text
         haki.gsub(/\[.*?\]/, "").colorize(:blue)
     end
 
     def self.fruits_info
-        url = open("https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users")
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open("https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"))
         devil_fruits = page.css(".wrapper").css("p")[0..4].text.colorize(:red)
     end
 
     def self.all_fruits
-        site = "https://onepiece.fandom.com/wiki/Devil_Fruit"
-        url1 = open(site)
-        page = Nokogiri::HTML(url1)
+        page = Nokogiri::HTML(open("https://onepiece.fandom.com/wiki/Devil_Fruit"))
         fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
         fruit_node.collect.with_index do |node, index|
             url = node.attributes["href"].value
@@ -54,8 +49,7 @@ class Scraper
     
     def self.grab_fruitsbio(fruit)
         site = "https://onepiece.fandom.com" + fruit.url 
-        url = open(site)
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open(site))
         selector = page.css('.mw-content-text')
         devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
         zoan = selector.css('li')[0..2].text
@@ -73,9 +67,7 @@ class Scraper
     end
 
     def self.all_char
-        site = "https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"
-        url1 = open(site)
-        page = Nokogiri::HTML(url1)
+        page = Nokogiri::HTML(open("https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"))
         char_node = page.css("table.cs.StrawHatPiratesColors").css("tr")[3].css("a") + page.css("table.cs.StrawHatPiratesColors").css("tr")[5].css("a")
 
         char_node.collect.with_index do |node, index|
@@ -111,9 +103,7 @@ class Scraper
     end 
 
     def self.episode_list
-        site = "https://onepiece.fandom.com/wiki/Episode_Guide"
-        url = open(site)
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open("https://onepiece.fandom.com/wiki/Episode_Guide"))
         ep = page.css(".mw-content-text").css("p")[0].text.split('.')
         episode_count = ep[1].to_s + ('.')
         episode_count.colorize(:red)
