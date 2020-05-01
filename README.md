@@ -10,7 +10,7 @@ NOTE: If you would like to run this application, you will have to:
 2. Clone or download this repository. 
 3. `cd` into the CLI directory.
 4. Run `bundle install`
-5. Run `./bin/onepiece`
+5. Run `ruby ./bin/onepiece` or `./bin/onepiece`
 
 Or if you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 <!-- Add this line to your application's Gemfile:
