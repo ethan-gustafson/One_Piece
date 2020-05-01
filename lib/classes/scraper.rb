@@ -7,8 +7,7 @@ class Scraper
 
     def self.haki
         page = Nokogiri::HTML(open("https://onepiece.fandom.com/wiki/Haki"))
-        haki = page.css(".mw-content-text").css("p")[0].text
-        haki.gsub(/\[.*?\]/, "").colorize(:blue)
+        haki = page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "").colorize(:blue)
     end
 
     def self.fruits_info
