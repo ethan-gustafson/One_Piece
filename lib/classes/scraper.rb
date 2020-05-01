@@ -44,10 +44,9 @@ class Scraper
     
     def self.grab_fruitsbio(fruit)
         site = "https://onepiece.fandom.com" + fruit.url 
-        page = Nokogiri::HTML(open(site))
-        selector = page.css('.mw-content-text')
-        devilfruit = selector.css("p")[fruit.start_i..fruit.end_i].text
-        zoan = selector.css('li')[0..2].text
+        page = Nokogiri::HTML(open(site)).css('.mw-content-text')
+        devilfruit = page.css("p")[fruit.start_i..fruit.end_i].text
+        zoan = page.css('li')[0..2].text
         DevilFruit.all.each.with_index do |fruit, index|
             case index 
                 
@@ -91,8 +90,7 @@ class Scraper
 
     def self.grab_bio(character)
         site = "https://onepiece.fandom.com" + character.url 
-        url = open(site)
-        page = Nokogiri::HTML(url)
+        page = Nokogiri::HTML(open(site))
         char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
         character.bio=(char.gsub(/\[.*?\]/, "")).colorize(:blue)
     end 
