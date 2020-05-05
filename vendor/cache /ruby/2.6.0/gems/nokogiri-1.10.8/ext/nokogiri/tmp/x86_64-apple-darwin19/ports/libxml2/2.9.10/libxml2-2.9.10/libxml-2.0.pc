@@ -1,0 +1,13 @@
+prefix=/Users/user/Desktop/Flatiron/Projects/CLI/vendor/cache /ruby/2.6.0/gems/nokogiri-1.10.8/ports/x86_64-apple-darwin19/libxml2/2.9.10
+exec_prefix=${prefix}
+libdir=/Users/user/Desktop/Flatiron/Projects/CLI/vendor/cache /ruby/2.6.0/gems/nokogiri-1.10.8/ports/x86_64-apple-darwin19/libxml2/2.9.10/lib
+includedir=${prefix}/include
+modules=1
+
+Name: libXML
+Version: 2.9.10
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2
+Libs.private:  -lpthread -lz   -liconv -lm  
+Cflags: -I${includedir}/libxml2 
