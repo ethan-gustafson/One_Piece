@@ -12,6 +12,8 @@ NOTE: If you would like to run this application, you will have to:
 4. Run `bundle install`
 5. Run `ruby ./bin/onepiece` or `./bin/onepiece`
 
+If you would like to just see the live version: [![Run on Repl.it](https://repl.it/badge/github/GoodGuyGuf/One_Piece)](https://repl.it/github/GoodGuyGuf/One_Piece)
+
 Or if you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 <!-- Add this line to your application's Gemfile:
 
