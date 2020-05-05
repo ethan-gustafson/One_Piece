@@ -1,5 +1,5 @@
 current directory: /Users/user/Desktop/Flatiron/Projects/CLI/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.8/ext/nokogiri
-/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20200505-56704-mjm1po.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20200505-82664-1a0nqis.rb extconf.rb
 checking if the C compiler accepts  -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libxml2... yes
 checking if the C compiler accepts -Wno-error=unused-command-line-argument-hard-error-in-future... no
 Building nokogiri using packaged libraries.
@@ -133,4 +133,4 @@ rm -rf /Users/user/Desktop/Flatiron/Projects/CLI/vendor/bundle/ruby/2.6.0/gems/n
 
 current directory: /Users/user/Desktop/Flatiron/Projects/CLI/vendor/bundle/ruby/2.6.0/gems/nokogiri-1.10.8/ext/nokogiri
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nokogiri.bundle ./.gem.20200505-56704-z4k1og/nokogiri
+/usr/bin/install -c -m 0755 nokogiri.bundle ./.gem.20200505-82664-1gy3qft/nokogiri
