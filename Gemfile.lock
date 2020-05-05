@@ -32,7 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.0.2)
+  bundler
   colorize
   nokogiri (= 1.10.8)
   pry
@@ -42,4 +42,4 @@ DEPENDENCIES
   thor
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
