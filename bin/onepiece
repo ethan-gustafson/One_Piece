@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-system("bundle install")
+# system("bundle install")
 require_relative '../config/environment.rb'
 
 CLI.new.call

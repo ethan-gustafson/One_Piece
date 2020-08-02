@@ -9,21 +9,22 @@ class MenuOption
     end
 
     def self.summary
-        puts Scraper.summary
+        puts "\n#{Scraper.summary}"
         input
     end 
 
     def self.episodes
-        puts Scraper.episode_list
+        puts "\n#{Scraper.episode_list}"
         input
     end
 
     def self.where_to_watch
-        puts "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
+        puts "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
         input
     end
 
     def self.characters
+        puts ""
         Character.all.each.with_index(1) do |c, index|
             puts "#{index}. #{c.name}".colorize(:red)
         end
@@ -37,7 +38,7 @@ class MenuOption
             if (1..Character.all.length).include?(input)
                 character = Character.all[input - 1] # input is a number. This [] is an index.
                 Scraper.grab_bio(character)
-                puts "#{character.bio}"
+                puts "\n#{character.bio}"
             else
                 break
             end
@@ -45,7 +46,7 @@ class MenuOption
     end
 
     def self.fruits
-        puts "#{Scraper.fruits_info}\n\n"
+        puts "\n#{Scraper.fruits_info}\n\n"
         DevilFruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
         end
@@ -59,7 +60,7 @@ class MenuOption
             if (1..DevilFruit.all.length).include?(input)
                 fruit = DevilFruit.all[input - 1]
                 Scraper.grab_fruitsbio(fruit)
-                puts "#{fruit.bio}"
+                puts "\n#{fruit.bio}"
             else
                 break
             end
@@ -67,7 +68,7 @@ class MenuOption
     end
 
     def self.haki
-       puts Scraper.haki
+       puts "\n#{Scraper.haki}"
        input
     end
 

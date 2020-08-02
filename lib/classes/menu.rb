@@ -6,29 +6,29 @@ class Menu
         input = " "
         while input != "exit"
 
-            puts "\nTo see a summary of the show, type 'summary'."
+            puts "To see a summary of the show, type 'summary'."
             puts "Type 'length' to see how many episodes there are in One Piece!"
             puts "Type 'characters' if you would like to see the list of characters!"
             puts "Type 'fruits' if you would lke to see information about devil fruits!"
             puts "Type 'haki' to see what Haki is!"
             puts "Type 'where' if you would like to know where to watch One Piece!"
-            puts "To quit, type 'exit'."
+            puts "To quit, type 'exit'.\n\n"
             input = gets.strip
         
             case input
 
             when 'summary'
-                puts "\n#{MenuOption.summary}"
+                puts MenuOption.summary
             when 'length'
-                puts "\n#{MenuOption.episodes}"
+                puts MenuOption.episodes
             when 'characters'
-                puts "\n#{MenuOption.characters}"
+                puts MenuOption.characters
             when 'fruits'
-                puts "\n#{MenuOption.fruits}"
+                puts MenuOption.fruits
             when 'haki'
-                puts "\n#{MenuOption.haki}"
+                puts MenuOption.haki
             when 'where'
-                puts "\n#{MenuOption.where_to_watch}"
+                puts MenuOption.where_to_watch
             end
         end
     end
