@@ -3,8 +3,7 @@ class MenuOption
     def self.input
         input = " "
         while input != ""
-            puts ""
-            puts "Hit enter to go back to the menu!"
+            puts "\nHit enter to go back to the menu!"
             input = gets.strip
         end
     end
@@ -31,8 +30,7 @@ class MenuOption
         # binding.pry
          input = " "
          while input != '0'
-         puts ""
-         puts "Hit a number from (#1-10) to see a character bio!"
+         puts "\nHit a number from (#1-10) to see a character bio!"
          puts "If you would like to go back to the menu, type '0' or hit enter!"
          input = gets.strip.to_i
 
@@ -47,16 +45,14 @@ class MenuOption
     end
 
     def self.fruits
-        puts Scraper.fruits_info
-        puts ""
+        puts "#{Scraper.fruits_info}\n\n"
         DevilFruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
         end
         
         input = " "
         while input != '0'
-            puts ""
-            puts "Choose a Devil Fruit(#1-6) to see its abilities!"
+            puts "\nChoose a Devil Fruit(#1-6) to see its abilities!"
             puts "If you would like to go back to the menu, type '0'"
             input = gets.strip.to_i
             

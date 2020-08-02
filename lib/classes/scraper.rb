@@ -78,7 +78,7 @@ class Scraper
             when 2
                 character.start_i = 4
                 character.end_i = 5 
-            when 3, 6, 7, 8
+            when 3, (6..8)
                 character.start_i = 4
                 character.end_i = 7 
             when 9
