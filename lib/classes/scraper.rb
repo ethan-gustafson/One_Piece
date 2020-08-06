@@ -60,7 +60,7 @@ class Scraper
         end
     end
 
-    def self.all_char
+    def self.all_characters
         page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"))
         char_node = page.css("table.cs.StrawHatPiratesColors").css("tr")[3].css("a") + page.css("table.cs.StrawHatPiratesColors").css("tr")[5].css("a")
 
@@ -86,6 +86,11 @@ class Scraper
                 character.end_i = 3 
             end
         end
+    end
+
+    def self.all_char_and_all_fruits
+        all_characters
+        all_fruits
     end
 
     def self.grab_bio(character)
