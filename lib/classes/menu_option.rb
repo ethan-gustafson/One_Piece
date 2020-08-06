@@ -1,30 +1,19 @@
 class MenuOption
 
-    def self.input
-        input = " "
-        while input != ""
-            puts "\nHit enter to go back to the menu!"
-            input = gets.strip
-        end
-    end
-
     def self.summary
-        puts "\n#{Scraper.summary}"
-        input
+        Scraper.summary
     end 
 
     def self.episodes
-        puts "\n#{Scraper.episode_list}"
-        input
+        Scraper.episode_list
     end
 
     def self.where_to_watch
-        puts "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
-        input
+        "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
     end
 
     def self.characters
-        puts ""
+        puts
         Character.all.each.with_index(1) do |c, index|
             puts "#{index}. #{c.name}".colorize(:red)
         end
@@ -68,8 +57,7 @@ class MenuOption
     end
 
     def self.haki
-       puts "\n#{Scraper.haki}"
-       input
+       Scraper.haki
     end
 
 end

@@ -1,5 +1,13 @@
 class Menu 
 
+    def self.user_input
+        input = " "
+        while input != ""
+            puts "\nHit enter to go back to the menu!"
+            input = gets.strip
+        end
+    end
+
     def self.new
         puts Effect.logo
         
@@ -18,17 +26,21 @@ class Menu
             case input
 
             when 'summary'
-                puts MenuOption.summary
+                puts "\n#{MenuOption.summary}"
+                user_input
             when 'length'
-                puts MenuOption.episodes
+                puts "\n#{MenuOption.episodes}"
+                user_input
             when 'characters'
-                puts MenuOption.characters
+                MenuOption.characters
             when 'fruits'
-                puts MenuOption.fruits
+                MenuOption.fruits
             when 'haki'
-                puts MenuOption.haki
+                puts "\n#{MenuOption.haki}"
+                user_input
             when 'where'
-                puts MenuOption.where_to_watch
+                puts "\n#{MenuOption.where_to_watch}"
+                user_input
             end
         end
     end
