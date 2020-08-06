@@ -1,4 +1,4 @@
-class Effects
+class Effect
 
     def logo
         intro = puts "\nWelcome to One Piece!".colorize(:red)

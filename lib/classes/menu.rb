@@ -1,7 +1,7 @@
 class Menu 
 
     def self.new
-        Effects.new.logo
+        Effect.new.logo
         
         input = " "
         while input != "exit"

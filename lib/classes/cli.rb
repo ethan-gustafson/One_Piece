@@ -1,6 +1,6 @@
 class CLI
 
-    def call
+    def self.call
         Scraper.all_char
         Scraper.all_fruits
         Menu.new
