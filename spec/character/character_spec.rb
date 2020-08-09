@@ -5,13 +5,13 @@ describe Character do
 
     context "attributes" do
 
-        subject { Character.new("Luffy", "https://onepiece.fandom.com/wiki/Monkey_D._Luffy") } 
+        subject { Character.new("Luffy", "https://onepiece.fandom.com/wiki/Monkey_D._Luffy") } # Subject is just the starting describe argument name
 
         it "Instantiate with a name & URL" do
             expect(subject).to have_attributes(:name => "Luffy", :url => "https://onepiece.fandom.com/wiki/Monkey_D._Luffy")
         end
 
-        it_behaves_like('character_devil_fruit')
+        it_behaves_like('character_devil_fruit') # this will essentially 'copy' and 'paste' the code in character_devil_fruit right here
 
         it ":name, :url & :bio must be strings" do
             subject.bio = "Kaizoku-ō ni ore wa naru!"
