@@ -7,4 +7,8 @@ describe CLI do
         expect(URI.open("https://www.google.com/")).not_to be_falsey
     end
 
+    it "runs the application" do
+        expect(CLI).to respond_to(:call)
+    end
+
 end
