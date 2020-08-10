@@ -15,7 +15,7 @@ class Menu
         while input != "exit"
 
             puts "To see a summary of the show, type 'summary'."
-            puts "Type 'length' to see how many episodes there are in One Piece!"
+            puts "Type 'episodes' to see how many episodes there are in One Piece!"
             puts "Type 'characters' if you would like to see the list of characters!"
             puts "Type 'fruits' if you would lke to see information about devil fruits!"
             puts "Type 'haki' to see what Haki is!"
@@ -28,7 +28,7 @@ class Menu
             when 'summary'
                 puts "\n#{MenuOption.summary}"
                 user_input
-            when 'length'
+            when 'episodes'
                 puts "\n#{MenuOption.episodes}"
                 user_input
             when 'characters'

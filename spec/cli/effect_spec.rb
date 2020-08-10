@@ -6,7 +6,7 @@ describe Effect do
     context '.logo' do
 
         it "outputs ASCII art of the One Piece Pirates Jolly Roger" do
-            expect(Effect.logo).to eql(
+            expect(Effect.logo).to eq(
                 "\nWelcome to One Piece!\n
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       @@@@@@@@@@@@@@

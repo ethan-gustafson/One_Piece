@@ -3,11 +3,13 @@ require_relative '../../config/environment.rb'
 describe MenuOption do
 
     it ".summary method returns the summary scraped from Scraper.summary" do
-        expect(MenuOption.summary).to eq(Scraper.summary)
+        summary = 'The One Piece manga and anime series features an extensive cast of characters created by Eiichiro Oda. The series takes place in a fictional universe where vast numbers of pirates, soldiers, revolutionaries, and other adventurers fight each other, using various superhuman and supernatural abilities. The majority of the characters are human, but the cast also includes giants, mermen and mermaids, fish-men, sky people, and minks, among others. Many of the characters possess supernatural abilities gained by eating so-called "Devil Fruits". The series\' storyline follows the adventures of a group of pirates as they search for the "One Piece" treasure.'
+        expect(MenuOption.summary).to eq(summary.colorize(:green))
     end
 
     it ".episodes returns the episode count of One Piece from Scraper.episode_list" do
-        expect(MenuOption.episodes).to eq(Scraper.episode_list)
+        episodes = " The series currently consists of 936 Episodes (ongoing), 4 OVAs, 13 TV specials and 14 movies."
+        expect(MenuOption.episodes).to eq(episodes.colorize(:red))
     end
 
     it ".where_to_watch returns where you can currently watch the tv show" do
@@ -23,7 +25,8 @@ describe MenuOption do
     end
 
     it ".haki" do
-        expect(MenuOption.haki).to eq(Scraper.haki)
+        haki = "Haki is a mysterious power that allows the user to utilize their own spiritual energy for various purposes.\n"
+        expect(MenuOption.haki).to eq(haki.colorize(:blue))
     end
     
 end
