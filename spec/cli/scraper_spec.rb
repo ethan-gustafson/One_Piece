@@ -1,7 +1,4 @@
-require_relative '../../lib/classes/scraper.rb'
-require 'nokogiri'
-require 'open-uri'
-require 'colorize'
+require_relative '../../config/environment.rb'
 
 describe Scraper do
 
@@ -26,16 +23,16 @@ describe Scraper do
         expect(Scraper.fruits_info).to eq(fruits_info)
     end
 
-    xit ".all_fruits scrapes a list of fruits" do
-        
+    it ".all_fruits scrapes a list of fruits" do
+        expect(Scraper.all_fruits.count).to eq(6)
     end
 
     xit ".grab_fruitsbio scrapes the bio of the specific fruit" do
         
     end
 
-    xit ".all_characters scrapes a list of characters" do
-        
+    it ".all_characters scrapes a list of characters" do
+        expect(Scraper.all_characters.count).to eq(10)
     end
 
     xit ".grab_bio scrapes the specific character bio" do
@@ -46,8 +43,12 @@ describe Scraper do
         
     end
 
-    xit ".episode_list scrapes how many episodes there are" do
-        
+    it ".episode_list scrapes how many episodes there are" do
+        url = "https://onepiece.fandom.com/wiki/Episode_Guide"
+        scraped_data = Nokogiri::HTML(URI.open(url))
+        ep = scraped_data.css(".mw-content-text").css("p")[0].text.split('.')
+        episode_count = ep[1].to_s + ('.')
+        expect(Scraper.episode_list).to eq(episode_count)
     end
     
 end
