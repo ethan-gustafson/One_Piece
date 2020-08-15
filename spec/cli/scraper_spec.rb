@@ -39,8 +39,8 @@ describe Scraper do
         
     end
 
-    xit ".all_char_and_all_fruits calls .all_characters & .all_fruits" do
-        
+    it ".all_char_and_all_fruits calls .all_characters & .all_fruits" do
+        expect(Scraper.all_char_and_all_fruits.count).to eq(2)
     end
 
     it ".episode_list scrapes how many episodes there are" do
