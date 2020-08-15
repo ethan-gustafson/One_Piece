@@ -3,8 +3,8 @@ require_relative '../../config/environment.rb'
 describe MenuOption do
 
     it ".summary method returns the summary scraped from Scraper.summary" do
-        summary = 'The One Piece manga and anime series features an extensive cast of characters created by Eiichiro Oda. The series takes place in a fictional universe where vast numbers of pirates, soldiers, revolutionaries, and other adventurers fight each other, using various superhuman and supernatural abilities. The majority of the characters are human, but the cast also includes giants, mermen and mermaids, fish-men, sky people, and minks, among others. Many of the characters possess supernatural abilities gained by eating so-called "Devil Fruits". The series\' storyline follows the adventures of a group of pirates as they search for the "One Piece" treasure.'
-        expect(MenuOption.summary).to eq(summary.colorize(:green))
+        summary = 'The One Piece manga and anime series features an extensive cast of characters created by Eiichiro Oda.'
+        expect(MenuOption.summary).to include(summary)
     end
 
     it ".episodes returns the episode count of One Piece from Scraper.episode_list" do
