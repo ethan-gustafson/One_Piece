@@ -1,11 +1,11 @@
 class MenuOption
 
     def self.summary
-        Scraper.summary
+        Scraper.summary.colorize(:green)
     end 
 
     def self.episodes
-        Scraper.episode_list
+        Scraper.episode_list.colorize(:red)
     end
 
     def self.where_to_watch
@@ -35,7 +35,7 @@ class MenuOption
     end
 
     def self.fruits
-        puts "\n#{Scraper.fruits_info}\n\n"
+        puts "\n#{Scraper.fruits_info.colorize(:red)}\n\n"
         DevilFruit.all.each.with_index(1) do |fruit, index|
             puts "#{index}. #{fruit.name}".colorize(:green)
         end
@@ -57,7 +57,7 @@ class MenuOption
     end
 
     def self.haki
-       Scraper.haki
+       Scraper.haki.colorize(:blue)
     end
 
 end

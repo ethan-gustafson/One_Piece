@@ -2,17 +2,17 @@ class Scraper
 
     def self.summary
         page = Nokogiri::HTML(URI.open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
-        summary = page.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "").colorize(:green)
+        summary = page.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "")
     end
 
     def self.haki
         page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Haki"))
-        haki = page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "").colorize(:blue)
+        haki = page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")
     end
 
     def self.fruits_info
         page = Nokogiri::HTML(URI.open("https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"))
-        devil_fruits = page.css(".wrapper").css("p")[0..4].text.colorize(:red)
+        devil_fruits = page.css(".wrapper").css("p")[0..4].text
     end
 
     def self.all_fruits
@@ -105,7 +105,7 @@ class Scraper
         page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Episode_Guide"))
         ep = page.css(".mw-content-text").css("p")[0].text.split('.')
         episode_count = ep[1].to_s + ('.')
-        episode_count.colorize(:red)
+        episode_count
     end
     
 end
