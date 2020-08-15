@@ -40,6 +40,7 @@ class Scraper
                 fruits.end_i = 3
             end
         end
+        DevilFruit.all
     end
     
     def self.grab_fruitsbio(fruit)
@@ -86,11 +87,11 @@ class Scraper
                 character.end_i = 3 
             end
         end
+        Character.all
     end
 
     def self.all_char_and_all_fruits
-        all_characters
-        all_fruits
+        [all_characters, all_fruits]
     end
 
     def self.grab_bio(character)
