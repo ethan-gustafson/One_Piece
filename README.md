@@ -12,7 +12,7 @@ NOTE: If you would like to run this application, you will have to:
 4. Run `bundle install`
 5. Run `ruby ./bin/onepiece` or `./bin/onepiece`
 
-You can run the application here on [Repl.it](https://repl.it/@GoodGuyGuf/OnePiece) 
+If you wish to run the application, it can be found here at [Repl.it](https://repl.it/@GoodGuyGuf/OnePiece).
 
 If you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 
