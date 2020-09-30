@@ -12,7 +12,9 @@ NOTE: If you would like to run this application, you will have to:
 4. Run `bundle install`
 5. Run `ruby ./bin/onepiece` or `./bin/onepiece`
 
-Or if you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
+You can run the application here on [Repl.it](https://repl.it/@GoodGuyGuf/OnePiece) 
+
+If you would just like to watch the YouTube presentation, watch here: https://youtu.be/ZpQEJLfSebA
 
 ## Usage
 The CLI includes the anime's characters, devil fruits information, haki description, episode count and where to watch the show!
