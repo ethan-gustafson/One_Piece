@@ -1,7 +1,6 @@
 require 'bundler'
-Bundler.require(:default)
+Bundler.require
 
-# require 'thor'
 require 'nokogiri'
 require 'open-uri'
 require 'colorize'

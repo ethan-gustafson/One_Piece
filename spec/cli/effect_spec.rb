@@ -1,5 +1,4 @@
-require_relative '../../lib/classes/effect.rb'
-require 'colorize'
+require_relative "../spec_helper.rb"
 
 describe Effect do
 

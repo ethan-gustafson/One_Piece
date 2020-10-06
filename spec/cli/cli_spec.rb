@@ -1,4 +1,4 @@
-require_relative '../../config/environment.rb'
+require_relative "../spec_helper"
 
 describe CLI do
     

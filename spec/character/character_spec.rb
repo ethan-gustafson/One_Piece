@@ -1,5 +1,4 @@
-require_relative '../../lib/classes/character.rb'
-require 'shared_examples/character_devil_fruit'
+require_relative "../spec_helper"
 
 describe Character do
 
