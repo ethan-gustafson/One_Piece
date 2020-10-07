@@ -1,11 +1,11 @@
 require_relative '../modules/instance_methods.rb'
 class DevilFruit
-    include InstanceMethods
+include InstanceMethods
 
-    @@all = []
+  @@all = []
 
-    def self.all
-        @@all
-    end
+  def self.all
+    @@all
+  end
 
 end
