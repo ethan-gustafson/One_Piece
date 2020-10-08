@@ -1,6 +1,7 @@
-require_relative '../modules/instance_methods.rb'
+require_relative '../modules/op_data.rb'
 class Character
-  include InstanceMethods
+  include OPData::InstanceMethods
+  extend OPData::ClassMethods
 
   @@all = []
 

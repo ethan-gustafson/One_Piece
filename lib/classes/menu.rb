@@ -30,10 +30,7 @@ class Menu
         puts @scraper.episode_list.colorize(:red)
         user_input
       when 'characters'
-        puts
-        Character.all.each.with_index(1) do |c, index|
-            puts "#{index}. #{c.name}".colorize(:red)
-        end
+        Character.list_instances
 
         input = " "
         while input != '0'
@@ -49,10 +46,8 @@ class Menu
           end
         end
       when 'fruits'
-        puts "\n#{@scraper.fruits_info.colorize(:red)}\n\n"
-        DevilFruit.all.each.with_index(1) do |fruit, index|
-          puts "#{index}. #{fruit.name}".colorize(:green)
-        end
+        puts "\n#{@scraper.fruits_info.colorize(:green)}\n\n"
+        DevilFruit.list_instances
         
         input = " "
         while input != '0'
@@ -71,7 +66,7 @@ class Menu
         puts @scraper.haki.colorize(:blue)
         user_input
       when 'where'
-        puts "You can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
+        puts "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
         user_input
       end
     end
