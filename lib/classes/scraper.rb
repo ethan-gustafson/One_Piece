@@ -1,7 +1,7 @@
 class Scraper
 
     def initialize
-      all_characters 
+      all_characters
       all_fruits
     end
 
@@ -25,7 +25,7 @@ class Scraper
         fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
         fruit_node.collect.with_index do |node, index|
             url = node.attributes["href"].value
-            fruits = DevilFruit.new(node.text, url)
+            fruits = DevilFruit.new(node.text, ("https://onepiece.fandom.com" + url))
             case index 
 
             when 0, 1 # 1. Paramecia & 2. Zoan
@@ -45,25 +45,25 @@ class Scraper
                 fruits.end_i = 3
             end
         end
-        DevilFruit.all
+        all_fruits_bio
     end
     
-    def grab_fruitsbio(fruit)
-        site = "https://onepiece.fandom.com" + fruit.url 
-        page = Nokogiri::HTML(URI.open(site)).css('.mw-content-text')
+    def all_fruits_bio
+      DevilFruit.all.each.with_index do |fruit, index|
+        page = Nokogiri::HTML(URI.open(fruit.url)).css('.mw-content-text')
         devilfruit = page.css("p")[fruit.start_i..fruit.end_i].text
         zoan = page.css('li')[0..2].text
-        DevilFruit.all.each.with_index do |fruit, index|
-            case index 
+        case index 
                 
-            when 0
-                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
-            when 1
-                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
-            when 2, 3, 4, 5
-                fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:yellow)
-            end
+        when 0
+          fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
+        when 1
+          fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
+        when 2, 3, 4, 5
+          fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:yellow)
         end
+      end
+      DevilFruit.all
     end
 
     def all_characters
@@ -92,7 +92,14 @@ class Scraper
                 character.end_i = 3 
             end
         end
-        Character.all
+        all_character_bios
+    end
+
+    def all_character_bios
+      Character.all.each do |c|
+        grab_bio(c)
+      end
+      Character.all
     end
 
     def grab_bio(character)
