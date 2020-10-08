@@ -29,5 +29,9 @@ describe Character do
     it '.all method which will record all instances of the class' do
       expect(Character.all).to be_an(Array)
     end
+
+    it '.list_instances method will output index and name of Character' do
+      expect(Character.list_instances).to be_an(Array)
+    end
   end
 end
