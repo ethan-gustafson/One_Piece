@@ -1,86 +1,75 @@
 class Menu 
 
+  attr_reader :scraper
+
   def initialize
     @scraper = Scraper.new
+    greet_user
+  end
+
+  def greet_user
+    puts Effect.logo
     list_options
   end
 
-  def user_input
-    input = " "
-    while input != ""
-      puts "\nHit enter to go back to the menu!"
-      input = gets.strip
-    end
-  end
-
-  def list_options
-    puts Effect.logo
-        
-    input = " "
-    while input != "exit"
-      options
-      input = gets.strip
-        
-      case input
-
-      when 'summary'
-        puts @scraper.summary.colorize(:green)
-        user_input
-      when 'episodes'
-        puts @scraper.episode_list.colorize(:red)
-        user_input
-      when 'characters'
-        Character.list_instances
-
-        input = " "
-        while input != '0'
-          puts "\nHit a number from (#1-10) to see a character bio!"
-          puts "If you would like to go back to the menu, type '0' or hit enter!"
-          input = gets.strip.to_i
-
-          if (1..Character.all.length).include?(input)
-            character = Character.all[input - 1] # input is a number. This [] is an index.
-            puts "\n#{character.bio}".colorize(:blue)
-          else
-            break
-          end
-        end
-      when 'fruits'
-        puts "\n#{@scraper.fruits_info.colorize(:green)}\n\n"
-        DevilFruit.list_instances
-        
-        input = " "
-        while input != '0'
-          puts "\nChoose a Devil Fruit(#1-6) to see its abilities!"
-          puts "If you would like to go back to the menu, type '0'"
-          input = gets.strip.to_i
-            
-          if (1..DevilFruit.all.length).include?(input)
-            fruit = DevilFruit.all[input - 1]
-            puts "\n#{fruit.bio}".colorize(:blue)
-          else
-            break
-          end
-        end
-      when 'haki'
-        puts @scraper.haki.colorize(:blue)
-        user_input
-      when 'where'
-        puts "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
-        user_input
-      end
-    end
-  end
-
-  def options 
+  def list_options 
     puts <<~HEREDOC 
-      To see a summary of the show, type 'summary'.
+      \nTo see a summary of the show, type 'summary'.
       Type 'episodes' to see how many episodes there are in One Piece!
       Type 'characters' if you would like to see the list of characters!
       Type 'fruits' if you would lke to see information about devil fruits!
       Type 'haki' to see what Haki is!
       Type 'where' if you would like to know where to watch One Piece!
-      To quit, type 'exit'.\n
+      To quit, type 'exit' or hit enter.\n
     HEREDOC
+    user_input
+  end
+
+  def user_input(input="> ")
+    execute_action(Readline.readline(input, true))
+  end
+
+  def execute_action(response)
+    case response
+      
+    when /summary/
+      puts @scraper.summary.colorize(:green)
+      list_options
+    when /episode.*/
+      puts @scraper.episode_list.colorize(:red)
+      list_options
+    when /character.*/
+      display(Character)
+    when /fruit.*/
+      puts "\n#{@scraper.fruits_info.colorize(:green)}\n\n"
+      display(DevilFruit)
+    when /haki/
+      puts @scraper.haki.colorize(:blue)
+      list_options
+    when /where/
+      puts "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!".colorize(:light_red)
+      list_options
+    when /exit/
+      puts "Goodbye!"
+    end
+  end
+
+  def display(class_name)
+    class_name.list_instances
+    puts "\nChoose a number to see more information!"
+    puts "Hit enter to go back to the menu or 'exit' to quit.\n"
+    object_menu(class_name, Readline.readline("> ", true))
+  end
+
+  def object_menu(class_name, input)
+    if (1..class_name.all.length).include?(input.to_i)
+      obj = class_name.all[input.to_i - 1]
+      puts "\n#{obj.bio}".colorize(:blue)
+      display(class_name)
+    elsif input.match(/exit/)
+      exit(true)
+    else
+      list_options
+    end
   end
 end

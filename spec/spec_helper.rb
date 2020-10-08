@@ -3,6 +3,7 @@ require 'readline'
 require 'nokogiri'
 require 'open-uri'
 require 'colorize'
+require 'stringio'
 require_relative "./shared_examples/character_devil_fruit.rb"
 require_relative "../data/scripts/scraper_helper.rb"
 require_relative "../data/scripts/scraped_data.rb"
@@ -111,21 +112,42 @@ RSpec.configure do |config|
 =end
 end
 
-APP_ROOT = File.expand_path('../..', __FILE__)
+APP_ROOT = File.expand_path('..', __FILE__)
+
+# Ruby predefined global variables => https://ruby-doc.org/docs/ruby-doc-bundle/Manual/man-1.4/variable.html#stdout
 
 def no_output(&block)
+  # $stdout is a predefined global variable in Ruby. It is the current standard output.
+  # .dup is from the Object class and is used to copy an object.
   original_stdout = $stdout.dup
+  # https://en.wikipedia.org/wiki/Null_device => /dev/null
+  # /dev/null is a device file that discards all data written to it, but reports that the write operation succeeded.
+  # This device is called /dev/null on Unix.
+
+  # .reopen is from the IO class. 
+  # It reassociates ios with the I/O stream given in other_IO or to a new stream opened on path.
+  # ios stands for input-output-stream. What this is doing is sending the original content
+  # in $stdout to the null stream.
   $stdout.reopen('/dev/null')
+  # .sync is from the IO class => https://ruby-doc.org/core-2.7.1/IO.html#method-i-sync-3D
+  # Sets the sync mode to true or false. 
+  # When sync mode is true, all output is immediately flushed to the underlying operating system and is not buffered internally. 
+  # Returns the new state.
   $stdout.sync = true
   begin
+   # yield to the block
     yield
+  # The ensure code block executes regardless of the success or failure of the begin block
   ensure
+    # .reopen will direct the copy of $stdout to $stdout
     $stdout.reopen(original_stdout)
   end
 end
 
 def capture_output(&block)
   original_stdout = $stdout.dup
+  # StringIO.new will create a StringIO instance that behaves like an IO object.
+  # Doing so will let you control the instance like a string.
   output_catcher = StringIO.new
   $stdout = output_catcher
   begin
@@ -133,9 +155,14 @@ def capture_output(&block)
   ensure
     $stdout = original_stdout
   end
+  # This just returns the content within the StringIO instance
   output_catcher.string
 end
 
-# def setup_fake_input(*args)
-#   allow(Readline).to receive(:readline).and_return(*args)
-# end
+def setup_fake_input(*args)
+  # Readline => https://www.rubyguides.com/2016/07/writing-a-shell-in-ruby/ => https://man7.org/linux/man-pages/man3/readline.3.html
+  # https://ruby-doc.org/stdlib-2.5.1/libdoc/readline/rdoc/Readline.html
+  
+  # readline will read a line from the terminal and return it.
+  allow(Readline).to receive(:readline).and_return(*args)
+end
