@@ -1,5 +1,4 @@
 require_relative "../spec_helper"
-
 describe Character do
 
   context "attributes" do
@@ -27,11 +26,13 @@ describe Character do
 
   context 'class Methods' do
     it '.all method which will record all instances of the class' do
-      expect(Character.all).to be_an(Array)
+      expect(Character).to receive(:all).and_return(Array)
+      Character.all.class
     end
 
     it '.list_instances method will output index and name of Character' do
-      expect(Character.list_instances).to be_an(Array)
+      expect(Character).to receive(:list_instances).and_return(Array)
+      Character.list_instances.class
     end
   end
 end

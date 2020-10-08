@@ -6,5 +6,4 @@ gem 'pry'
 gem "rspec"
 gem 'nokogiri'
 gem 'colorize'
-# gem 'thor'
 gem 'require_all'

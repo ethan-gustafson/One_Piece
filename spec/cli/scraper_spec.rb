@@ -1,58 +1,37 @@
 require_relative "../spec_helper.rb"
-
 describe Scraper do
 
-    it "Is able to connect to the internet" do
-        expect(URI.open("https://www.google.com/")).not_to be_falsey
+  before(:context) do
+    SCRAPER = Scraper.new
+  end
+
+  context "instance methods" do
+    it "#get_all_characters scrapes a list of characters" do
+      all_characters_scrape = ScraperHelper.obj_to_arr_of_hashes(SCRAPER.characters)
+      old_character_read = eval(ScraperHelper.read_file("./data/characters.txt"))
+      expect(all_characters_scrape).to eq(old_character_read)
     end
 
-    it ".summary scrapes the show summary" do
-        url = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
-        scraped_data = Nokogiri::HTML(URI.open(url))
-        summary = scraped_data.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "")
-        expect(Scraper.summary).to eq(summary)
+    it "#get_all_fruits scrapes a list of fruits" do
+      all_fruits_scrape = ScraperHelper.obj_to_arr_of_hashes(SCRAPER.fruits)
+      old_fruits_read = eval(ScraperHelper.read_file("./data/fruits.txt"))
+      expect(all_fruits_scrape).to eq(old_fruits_read)
     end
 
-    it ".haki scrapes information about Haki" do
-        url = "https://onepiece.fandom.com/wiki/Haki"
-        scraped_data = Nokogiri::HTML(URI.open(url))
-        haki = scraped_data.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")
-        expect(Scraper.haki).to eq(haki)
+    it "#get_fruits_info scrapes what devil fruits are" do
+      expect(SCRAPER.fruits_info).to match(ScraperHelper.read_file("./data/fruits_info.txt"))
     end
 
-    it ".fruits_info scrapes what devil fruits are" do
-        url = "https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"
-        scraped_data = Nokogiri::HTML(URI.open(url))
-        fruits_info = scraped_data.css(".wrapper").css("p")[0..4].text
-        expect(Scraper.fruits_info).to eq(fruits_info)
+    it "#get_summary scrapes the show summary" do
+      expect(SCRAPER.summary).to match(ScraperHelper.read_file("./data/summary.txt"))
     end
 
-    it ".all_fruits scrapes a list of fruits" do
-        expect(Scraper.all_fruits.count).to eq(6)
+    it "#get_haki scrapes information about Haki" do
+      expect(SCRAPER.haki).to match(ScraperHelper.read_file("./data/haki.txt"))
     end
 
-    xit ".grab_fruitsbio scrapes the bio of the specific fruit" do
-        
-    end
-
-    it ".all_characters scrapes a list of characters" do
-        expect(Scraper.all_characters.count).to eq(10)
-    end
-
-    xit ".grab_bio scrapes the specific character bio" do
-        
-    end
-
-    it ".all_char_and_all_fruits calls .all_characters & .all_fruits" do
-        expect(Scraper.all_char_and_all_fruits.count).to eq(2)
-    end
-
-    it ".episode_list scrapes how many episodes there are" do
-        url = "https://onepiece.fandom.com/wiki/Episode_Guide"
-        scraped_data = Nokogiri::HTML(URI.open(url))
-        ep = scraped_data.css(".mw-content-text").css("p")[0].text.split('.')
-        episode_count = ep[1].to_s + ('.')
-        expect(Scraper.episode_list).to eq(episode_count)
-    end
-    
+    it "#get_episode_list scrapes how many episodes there are" do
+      expect(SCRAPER.episode_list).to match(ScraperHelper.read_file("./data/episodes.txt"))
+    end 
+  end
 end

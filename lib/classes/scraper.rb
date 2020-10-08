@@ -1,11 +1,17 @@
 class Scraper
 
+  attr_reader :characters, :fruits, :fruits_info, :summary, :episode_list, :haki
+
   def initialize
-    all_characters
-    all_fruits
+    @characters = get_all_characters
+    @fruits = get_all_fruits
+    @fruits_info = get_fruits_info
+    @summary = get_summary
+    @episode_list = get_episode_list
+    @haki = get_haki
   end
 
-  def all_characters
+  def get_all_characters
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"))
     char_node = page.css("table.cs.StrawHatPiratesColors").css("tr")[3].css("a") + page.css("table.cs.StrawHatPiratesColors").css("tr")[5].css("a")
 
@@ -33,27 +39,14 @@ class Scraper
     end
     all_character_bios
   end
-
-  def all_character_bios
-    Character.all.each do |c|
-      grab_bio(c)
-    end
-    Character.all
-  end
-
-  def grab_bio(character)
-    site = "https://onepiece.fandom.com" + character.url 
-    page = Nokogiri::HTML(URI.open(site))
-    char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
-    character.bio=(char.gsub(/\[.*?\]/, "")).colorize(:blue)
-  end
   
-  def fruits_info
-    page = Nokogiri::HTML(URI.open("https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"))
-    devil_fruits = page.css(".wrapper").css("p")[0..4].text
+  def get_fruits_info
+    Nokogiri::HTML(URI.open(
+      "https://myanimelist.net/featured/538/Devil_Fruit__Defintion_Types_and_Users"
+    )).css(".wrapper").css("p")[0..4].text
   end
 
-  def all_fruits
+  def get_all_fruits
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Devil_Fruit"))
     fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
     fruit_node.collect.with_index do |node, index|
@@ -83,7 +76,38 @@ class Scraper
     end
     all_fruits_bio
   end
+
+  def get_summary
+    page = Nokogiri::HTML(URI.open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
+    "\n#{page.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "")}"
+  end
+
+  def get_haki
+    page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Haki"))
+    "\n#{page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")}"
+  end
+
+  def get_episode_list
+    page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Episode_Guide"))
+    "\n#{page.css(".mw-content-text").css("p")[0].text.split('.')[1].to_s + ('.')}"
+  end
+
+  private
   
+  def grab_bio(character)
+    site = "https://onepiece.fandom.com" + character.url 
+    page = Nokogiri::HTML(URI.open(site))
+    char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
+    character.bio=(char.gsub(/\[.*?\]/, ""))
+  end
+
+  def all_character_bios
+    Character.all.each do |c|
+      grab_bio(c)
+    end
+    Character.all
+  end
+
   def all_fruits_bio
     DevilFruit.all.each.with_index do |fruit, index|
       page = Nokogiri::HTML(URI.open(fruit.url)).css('.mw-content-text')
@@ -92,29 +116,13 @@ class Scraper
       case index 
               
       when 0
-        fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue)
+        fruit.bio=devilfruit.gsub(/\[.*?\]/, "")
       when 2
-        fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:blue) + zoan.gsub(/\[.*?\]/, "").colorize(:green) 
+        fruit.bio=devilfruit.gsub(/\[.*?\]/, "") + zoan.gsub(/\[.*?\]/, "")
       when 1, 3, 4, 5
-        fruit.bio=devilfruit.gsub(/\[.*?\]/, "").colorize(:yellow)
+        fruit.bio=devilfruit.gsub(/\[.*?\]/, "")
       end
     end
     DevilFruit.all
   end
-
-  def summary
-    page = Nokogiri::HTML(URI.open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
-    "\n#{page.css(".mw-parser-output p")[0].text.strip.gsub(/\[.*?\]/, "")}"
-  end
-
-  def haki
-    page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Haki"))
-    "\n#{page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")}"
-  end
-
-  def episode_list
-    page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Episode_Guide"))
-    "\n#{page.css(".mw-content-text").css("p")[0].text.split('.')[1].to_s + ('.')}"
-  end
-    
 end

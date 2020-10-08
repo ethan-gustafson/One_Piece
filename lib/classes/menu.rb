@@ -40,7 +40,7 @@ class Menu
 
           if (1..Character.all.length).include?(input)
             character = Character.all[input - 1] # input is a number. This [] is an index.
-            puts "\n#{character.bio}"
+            puts "\n#{character.bio}".colorize(:blue)
           else
             break
           end
@@ -57,7 +57,7 @@ class Menu
             
           if (1..DevilFruit.all.length).include?(input)
             fruit = DevilFruit.all[input - 1]
-            puts "\n#{fruit.bio}"
+            puts "\n#{fruit.bio}".colorize(:blue)
           else
             break
           end
