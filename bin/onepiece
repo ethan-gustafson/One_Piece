@@ -2,4 +2,4 @@
 # system("bundle install")
 require_relative '../config/environment.rb'
 
-CLI.call
+CLI.new(Menu)

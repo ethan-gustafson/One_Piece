@@ -2,6 +2,10 @@ require_relative "../spec_helper.rb"
 
 describe Scraper do
 
+    it "Is able to connect to the internet" do
+        expect(URI.open("https://www.google.com/")).not_to be_falsey
+    end
+
     it ".summary scrapes the show summary" do
         url = "https://en.wikipedia.org/wiki/List_of_One_Piece_characters"
         scraped_data = Nokogiri::HTML(URI.open(url))
