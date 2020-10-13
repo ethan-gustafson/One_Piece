@@ -21,8 +21,8 @@ class Scraper
       case index
 
       when 0
-        character.start_i = 5
-        character.end_i = 5 
+        character.start_i = 6
+        character.end_i = 7
       when 1, 4, 5  
         character.start_i = 4  
         character.end_i = 6 
@@ -48,7 +48,7 @@ class Scraper
 
   def get_all_fruits
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Devil_Fruit"))
-    fruit_node = page.css('#mw-content-text > ul')[0].css('li b a')
+    fruit_node = page.css('.mw-parser-output > ul')[0].css('li b a')
     fruit_node.collect.with_index do |node, index|
       url = node.attributes["href"].value
       fruit = DevilFruit.new(node.text, ("https://onepiece.fandom.com" + url))
@@ -84,12 +84,12 @@ class Scraper
 
   def get_haki
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Haki"))
-    "\n#{page.css(".mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")}"
+    "\n#{page.css("#mw-content-text").css("p")[0].text.gsub(/\[.*?\]/, "")}"
   end
 
   def get_episode_list
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Episode_Guide"))
-    "\n#{page.css(".mw-content-text").css("p")[0].text.split('.')[1].to_s + ('.')}"
+    "\n#{page.css("#mw-content-text").css("p")[0].text.split('.')[1].to_s + ('.')}"
   end
 
   private
@@ -97,7 +97,7 @@ class Scraper
   def grab_bio(character)
     site = "https://onepiece.fandom.com" + character.url 
     page = Nokogiri::HTML(URI.open(site))
-    char = page.css(".mw-content-text").css("p")[character.start_i..character.end_i].text
+    char = page.css("#mw-content-text").css("p")[character.start_i..character.end_i].text
     character.bio=(char.gsub(/\[.*?\]/, ""))
   end
 
