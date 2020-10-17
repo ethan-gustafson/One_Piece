@@ -40,6 +40,10 @@ The only way that `scraper_spec.rb` could function normally was with a `before(:
 
 `let` & `subject` would not work for this spec. Instantiating and testing a new Scraper instance takes a long time & will not return correct values.
 
+If the application doesn't run, **scraper.rb** has failed to get the right information. This means that the Wikipedia pages have updated and certain selectors have changed. This application currently doesn't handle Wikipedia changes errors. It won't run unless the right information is scraped. 
+
+I will update it in the future so that when the scrape fails, a backup set of data or some type of dynamic scrape will run and replace the original data.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/GoodGuyGuf/one_piece. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
