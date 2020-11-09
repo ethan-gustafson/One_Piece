@@ -9,4 +9,7 @@ class Character
     @@all
   end
 
+  def self.get_all_characters
+    CharacterScraper.characters
+  end
 end
