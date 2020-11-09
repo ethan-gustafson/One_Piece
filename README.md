@@ -22,28 +22,6 @@ The CLI includes the anime's characters, devil fruits information, haki descript
 ## Development
 This CLI was finished in December 2019.
 
-## IMPORTANT NOTE
-Spec tests are ***only*** functional when ran individually. Running all spec tests at once will fail most, if not *all* tests. This has to do with the `scraper_spec.rb/menu_spec.rb` files. When all specs are run, `SocketErrors` appears on all failed tests:
-
-```ruby
-  SocketError:
-    Failed to open TCP connection to onepiece.fandom.comhttps:443 (getaddrinfo: nodename nor servname provided, or not known)
-```
-
-The only way that `scraper_spec.rb` could function normally was with a `before(:all)` block:
-
-```ruby
-  before(:context) do
-    SCRAPER = Scraper.new
-  end
-```
-
-`let` & `subject` would not work for this spec. Instantiating and testing a new Scraper instance takes a long time & will not return correct values.
-
-If the application doesn't run, **scraper.rb** has failed to get the right information. This means that the Wikipedia pages have updated and certain selectors have changed. This application currently doesn't handle Wikipedia changes errors. It won't run unless the right information is scraped. 
-
-I will update it in the future so that when the scrape fails, a backup set of data or some type of dynamic scrape will run and replace the original data.
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/GoodGuyGuf/one_piece. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
