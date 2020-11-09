@@ -2,12 +2,6 @@ require_relative "../spec_helper.rb"
 describe Menu do
 
     context "#initialize" do
-      it "calls Scraper.new" do
-        setup_fake_input("exit")
-        no_output{ subject }
-        expect(subject.scraper.class).to eq(Scraper)
-      end
-
       it "outputs a menu" do
         setup_fake_input("exit")
         output = capture_output{ subject }
