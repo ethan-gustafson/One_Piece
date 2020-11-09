@@ -37,12 +37,21 @@ class Menu
       puts OnePiece.episodes.colorize(:red)
       list_options
     when /character.*/
-      Character.get_all_characters
-      display(Character)
+      if Character.all.length.eql?(10)
+        display(Character)
+      else
+        Character.get_all_characters
+        display(Character)
+      end
     when /fruit.*/
-      DevilFruit.get_all_fruits
-      puts DevilFruit.fruits_summary.colorize(:green)
-      display(DevilFruit)
+      if DevilFruit.all.length.eql?(6)
+        puts DevilFruit.fruits_summary.colorize(:green)
+        display(DevilFruit)
+      else
+        DevilFruit.get_all_fruits
+        puts DevilFruit.fruits_summary.colorize(:green)
+        display(DevilFruit)
+      end
     when /haki/
       puts OnePiece.haki_explanation.colorize(:blue)
       list_options
