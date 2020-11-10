@@ -1,7 +1,5 @@
 class Menu 
 
-  attr_reader :scraper
-
   def initialize
     greet_user
   end
