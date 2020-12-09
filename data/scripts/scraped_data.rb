@@ -22,8 +22,8 @@ class ScrapedData
   end
 
   def write_arrays_to_files
-    File.write(File.join("data", "characters.txt"), ScraperHelper.obj_to_arr_of_hashes(Character.all))
-    File.write(File.join("data", "fruits.txt"), ScraperHelper.obj_to_arr_of_hashes(DevilFruit.all))
+    File.write(File.join("data", "characters.txt"), ScraperHelper.object_to_array_of_hashes(Character.all))
+    File.write(File.join("data", "fruits.txt"), ScraperHelper.object_to_array_of_hashes(DevilFruit.all))
   end
 end
 
