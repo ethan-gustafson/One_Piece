@@ -3,15 +3,15 @@ class ScraperHelper
     File.read(file)
   end
 
-  def self.obj_to_arr_of_hashes(obj)
-    arr = []
-    obj.each do |e|
+  def self.object_to_array_of_hashes(object)
+    array = []
+    object.each do |obj|
       hash = {}
-      e.instance_variables.map do |v|
-        hash[v[1..-1].to_sym] = e.instance_variable_get(v)
+      obj.instance_variables.map do |instance_var|
+        hash[instance_var[1..-1].to_sym] = obj.instance_variable_get(instance_var)
       end
-      arr.push(hash)
+      array.push(hash)
     end
-    arr
+    array
   end
 end
