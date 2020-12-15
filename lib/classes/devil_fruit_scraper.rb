@@ -1,6 +1,8 @@
 require_relative "../modules/scraper.rb"
 class DevilFruitScraper
   extend Scraper::ClassMethods
+
+  # `self.fruits_summary_scrape` is responsible for getting the overview about devil fruits.
   
   def self.fruits_summary_scrape
     page = Nokogiri::HTML(URI
@@ -14,6 +16,10 @@ class DevilFruitScraper
       "\n#{display_previous_data('fruits_info')}"
     end
   end
+
+  # `self.fruits` is responsible for getting all fruit information xml.
+  #   If the xml isn't nil, we'll create the fruits. Otherwise, we'll
+  #   read from previous data.
 
   def self.fruits
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Devil_Fruit"))
@@ -39,25 +45,49 @@ class DevilFruitScraper
 
   def self.set_fruit_start_and_end_index(fruit, index)
     case index 
-    when 0 # Paramecia(1)
-      fruit.start_i = 1
-      fruit.end_i = 3 
-    when 1 # Logia(2)
-      fruit.start_i = 1
-      fruit.end_i = 4
-    when 2 # Zoan(3)
-      fruit.start_i = 2
-      fruit.end_i = 4
-    when 3 # Ancient Zoan(4)
-      fruit.start_i = 14
-      fruit.end_i = 18
-    when 4 # Mythical Zoan(5) 
-      fruit.start_i = 19
-      fruit.end_i = 20
-    when 5 # Artificial Zoan(6)
-      fruit.start_i = 1  
-      fruit.end_i = 5
+    when 0
+      set_paramecia_start_i_end_i(fruit)
+    when 1
+      set_logia_start_i_end_i(fruit)
+    when 2
+      set_zoan_start_i_end_i(fruit)
+    when 3
+      set_ancient_zoan_start_i_end_i(fruit)
+    when 4
+      set_mythical_zoan_start_i_end_i(fruit)
+    when 5
+      set_artificial_zone_start_i_end_i(fruit)
     end
+  end
+
+  def set_paramecia_start_i_end_i(fruit)
+    fruit.start_i = 1
+    fruit.end_i   = 3 
+  end
+
+  def set_logia_start_i_end_i(fruit)
+    fruit.start_i = 1
+    fruit.end_i   = 4
+  end
+
+  def set_zoan_start_i_end_i(fruit)
+    fruit.start_i = 2
+    fruit.end_i   = 4
+  end
+
+  def set_ancient_zoan_start_i_end_i(fruit)
+    fruit.start_i = 14
+    fruit.end_i   = 18
+  end
+
+  def set_mythical_zoan_start_i_end_i(fruit)
+    fruit.start_i = 19
+    fruit.end_i   = 20
+  end
+
+  def set_artificial_zone_start_i_end_i(fruit)
+    fruit.start_i = 1  
+    fruit.end_i   = 5
   end
 
   def self.set_fruit_bio(fruit, index)
