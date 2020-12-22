@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-# system("bundle install")
+# ^This is often referred to as a "shebang line" and it tells the shell 
+#   which interpreter to use to execute the remainder of the file.
 require_relative '../config/environment.rb'
 
-CLI.new(Menu)
+# Initialize Application
+CLI.initialize!
