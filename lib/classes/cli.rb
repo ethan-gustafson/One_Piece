@@ -1,8 +1,8 @@
+require_relative './menu.rb'
 class CLI
   def self.initialize!
     display_logo
     initialize_menu
-    greet_user
   end
 
   def self.display_logo
@@ -54,10 +54,6 @@ class CLI
   end
 
   def self.initialize_menu
-    Menu.request_submenu_options
-  end
-
-  def self.greet_user
     Menu.new
   end
 end
