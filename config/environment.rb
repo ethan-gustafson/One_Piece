@@ -3,9 +3,8 @@ require 'bundler'
 Bundler.require
 
 # require necessary gems & paths
-['nokogiri', 'open-uri', 'colorize', 'readline', 'pry'].each do |gem|
+['readline', 'nokogiri', 'open-uri', 'colorize', 'pry'].each do |gem|
   require gem
 end
 
-require_all 'lib/modules'
-require_all 'lib/classes'
+require_relative '../lib/classes/cli.rb'
