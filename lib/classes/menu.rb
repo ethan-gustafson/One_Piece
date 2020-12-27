@@ -1,82 +1,61 @@
-class Menu 
-
+require_relative '../modules/menu/general_menu.rb'
+require_relative '../modules/menu/character_menu.rb'
+require_relative '../modules/menu/devil_fruit_menu.rb'
+class Menu  
+  include GeneralMenu
+  include CharacterMenu
+  include DevilFruitMenu
+  
   def initialize
-    greet_user
+    @all_options = {}
+    set_menu
+    provide_menu
   end
 
-  def greet_user
-    puts Effect.logo
-    list_options
+  def set_menu
+    add_general_menu
+    add_character_menu
+    add_fruit_menu
   end
 
-  def user_input(input="Ɛ(^_^)3 ~> ")
-    execute_action(Readline.readline(input, true))
+  def set_options(key, value = {})
+    @all_options[key] = value
   end
 
-  def list_options 
-    puts <<~OPTIONS 
-      \nTo see a summary of the show, type 'summary'.
-      Type 'episodes' to see how many episodes there are in One Piece!
-      Type 'characters' if you would like to see the list of characters!
-      Type 'fruits' if you would lke to see information about devil fruits!
-      Type 'haki' to see what Haki is!
-      Type 'where' if you would like to know where to watch One Piece!
-      To quit, type 'exit' or hit enter.\n
-      OPTIONS
+  def modify_option(key, new_key, value)
+    @all_options[key][new_key] = value
+  end
+
+  def all_options
+    @all_options
+  end
+
+  def all_options_keys
+    all_options.keys.map{ |key| key.to_s }
+  end
+
+  def provide_menu
+    all_options_keys.each do |key|
+      puts all_options[key.to_sym][:initial_options]
+    end
     user_input
   end
 
+  def user_input(input="\nƐ(^_^)3 ~> ")
+    response = Readline.readline(input, true)
+    execute_action(response)
+  end
+
   def execute_action(response)
-    case response
-    when /summary/
-      puts OnePiece.summary.colorize(:green)
-      list_options
-    when /episode.*/
-      puts OnePiece.episodes.colorize(:red)
-      list_options
-    when /character.*/
-      if Character.all.length.eql?(10)
-        display(Character)
-      else
-        Character.get_all_characters
-        display(Character)
-      end
-    when /fruit.*/
-      if DevilFruit.all.length.eql?(6)
-        puts DevilFruit.fruits_summary.colorize(:green)
-        display(DevilFruit)
-      else
-        DevilFruit.get_all_fruits
-        puts DevilFruit.fruits_summary.colorize(:green)
-        display(DevilFruit)
-      end
-    when /haki/
-      puts OnePiece.haki_explanation.colorize(:blue)
-      list_options
-    when /where/
-      puts OnePiece.where_you_can_watch.colorize(:light_red)
-      list_options
-    when /exit/
-      puts "Goodbye!"
-    end
-  end
-
-  def display(class_name)
-    class_name.list_instances
-    puts "\nChoose a number to see more information!"
-    puts "Hit enter to go back to the menu or 'exit' to quit.\n"
-    object_menu(class_name, Readline.readline("Ɛ(>_>)3 ~>  ", true))
-  end
-
-  def object_menu(class_name, input)
-    if (1..class_name.all.length).include?(input.to_i)
-      obj = class_name.all[input.to_i - 1]
-      puts "\n#{obj.bio}".colorize(:blue)
-      display(class_name)
-    elsif input.match(/exit/)
-      exit(true)
+    key = all_options_keys.select{ |k| k.match?(/#{response}/) }[0]
+    if !key.nil?
+      next_menu = "#{key}_interface"
+      self.send(next_menu.to_sym)
+    elsif response.match(/exit/)
+      puts "See you next time!"
     else
-      list_options
+      puts "Sorry, I didn't get that."
+      user_input
     end
   end
 end
