@@ -1,11 +1,10 @@
-require_relative "../modules/scraper.rb"
-class OnePieceScraper
+require_relative '../../modules/scraper/scraper.rb'
+class GeneralInfoScraper
   extend Scraper::ClassMethods
 
   def self.summary
     page = Nokogiri::HTML(URI.open("https://en.wikipedia.org/wiki/List_of_One_Piece_characters"))
     summary_css = page.css(".mw-parser-output p")[0]
-    
     summary_info = 
       if !valid_scrape?(page, summary_css)
         display_previous_data("summary")
@@ -18,7 +17,6 @@ class OnePieceScraper
   def self.episodes
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Episode_Guide"))
     ep_css = page.css("#mw-content-text").css("p")[0]
-
     episodes_info = 
       if !valid_scrape?(page, ep_css)
         display_previous_data("episodes")
@@ -31,7 +29,6 @@ class OnePieceScraper
   def self.haki
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Haki"))
     haki_css = page.css("#mw-content-text").css("p")[1]
-    
     haki_info = 
       if !valid_scrape?(page, haki_css)
         display_previous_data("haki")

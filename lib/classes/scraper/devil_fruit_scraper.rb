@@ -1,4 +1,4 @@
-require_relative "../modules/scraper.rb"
+require_relative '../../modules/scraper/scraper.rb'
 class DevilFruitScraper
   extend Scraper::ClassMethods
 
@@ -60,32 +60,32 @@ class DevilFruitScraper
     end
   end
 
-  def set_paramecia_start_i_end_i(fruit)
+  def self.set_paramecia_start_i_end_i(fruit)
     fruit.start_i = 1
     fruit.end_i   = 3 
   end
 
-  def set_logia_start_i_end_i(fruit)
+  def self.set_logia_start_i_end_i(fruit)
     fruit.start_i = 1
     fruit.end_i   = 4
   end
 
-  def set_zoan_start_i_end_i(fruit)
+  def self.set_zoan_start_i_end_i(fruit)
     fruit.start_i = 2
     fruit.end_i   = 4
   end
 
-  def set_ancient_zoan_start_i_end_i(fruit)
+  def self.set_ancient_zoan_start_i_end_i(fruit)
     fruit.start_i = 14
     fruit.end_i   = 18
   end
 
-  def set_mythical_zoan_start_i_end_i(fruit)
+  def self.set_mythical_zoan_start_i_end_i(fruit)
     fruit.start_i = 19
     fruit.end_i   = 20
   end
 
-  def set_artificial_zone_start_i_end_i(fruit)
+  def self.set_artificial_zone_start_i_end_i(fruit)
     fruit.start_i = 1  
     fruit.end_i   = 5
   end

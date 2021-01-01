@@ -1,4 +1,4 @@
-require_relative "../modules/scraper.rb"
+require_relative '../../modules/scraper/scraper.rb'
 class CharacterScraper
   extend Scraper::ClassMethods
 
@@ -9,7 +9,7 @@ class CharacterScraper
   #   method. If it is valid, lets pass the xml to the next method, in order to
   #   create the characters for the Character class.
   
-  def self.characters
+  def self.get_characters
     page = Nokogiri::HTML(URI.open("https://onepiece.fandom.com/wiki/Straw_Hat_Pirates"))
     table = page.css("table.cs.StrawHatPiratesColors").css("tr")
     characters_xml = table[3].css("a") + table[5].css("a")
@@ -70,52 +70,52 @@ class CharacterScraper
   #   whose information needs to be changed based on where it moved in the 
   #   wiki page.
 
-  def set_luffy_start_i_end_i(character)
+  def self.set_luffy_start_i_end_i(character)
     character.start_i = 6
     character.end_i = 7
   end
 
-  def set_zoro_start_i_end_i(character)
+  def self.set_zoro_start_i_end_i(character)
     character.start_i = 5
     character.end_i = 6
   end
 
-  def set_chopper_start_i_end_i(character)
+  def self.set_chopper_start_i_end_i(character)
     character.start_i = 5
     character.end_i = 6
   end
 
-  def set_nami_start_i_end_i(character)
+  def self.set_nami_start_i_end_i(character)
     character.start_i = 4
     character.end_i = 5 
   end
 
-  def set_sanji_start_i_end_i(character)
+  def self.set_sanji_start_i_end_i(character)
     character.start_i = 5  
     character.end_i = 8 
   end
 
-  def set_usopp_start_i_end_i(character)
+  def self.set_usopp_start_i_end_i(character)
     character.start_i = 7
     character.end_i = 8 
   end
 
-  def set_robin_start_i_end_i(character)
+  def self.set_robin_start_i_end_i(character)
     character.start_i = 8
     character.end_i = 9 
   end
 
-  def set_franky_start_i_end_i(character)
+  def self.set_franky_start_i_end_i(character)
     character.start_i = 5
     character.end_i = 6 
   end
 
-  def set_brook_start_i_end_i(character)
+  def self.set_brook_start_i_end_i(character)
     character.start_i = 5
     character.end_i = 7 
   end
 
-  def set_jinbe_start_i_end_i(character)
+  def self.set_jinbe_start_i_end_i(character)
     character.start_i = 2
     character.end_i = 4 
   end
