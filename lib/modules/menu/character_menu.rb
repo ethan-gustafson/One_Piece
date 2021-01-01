@@ -8,7 +8,7 @@ module CharacterMenu
     initial = <<~MAIN
     Type 'characters' if you would like to see the list of characters!
     MAIN
-    set_options(:characters, { initial_options: initial })
+    @all_options[:characters] = { initial_options: initial }
   end
 
   def characters_interface

@@ -4,7 +4,7 @@ module GeneralMenu
     initial = <<~INITIAL
     Type 'general' if you would like to see a general overview of the show!
     INITIAL
-    set_options(:general, { initial_options: initial })
+    @all_options[:general] = { initial_options: initial }
   end
 
   def general_interface
