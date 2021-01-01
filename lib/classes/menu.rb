@@ -16,6 +16,12 @@ class Menu
     add_general_menu
     add_character_menu
     add_fruit_menu
+    add_exit_message
+  end
+
+  def add_exit_message
+    exit_message = "Type 'exit' to exit the program!\n"
+    set_options(:exit, { initial_options: exit_message })
   end
 
   def set_options(key, value = {})
@@ -42,7 +48,7 @@ class Menu
 
   def provide_initial_menu
     all_options_keys.each do |key|
-      puts all_options[key.to_sym][:initial_options]
+      printf("%s", all_options[key.to_sym][:initial_options].colorize(:green))
     end
     user_input
   end
@@ -63,12 +69,7 @@ class Menu
   #   The string "exit", nil, or a stringified key from all_options_keys.
 
   def match_user_response(input, array)
-    response = 
-    if input.match?(/exit/)
-      "exit"
-    else
-      array.select{ |key| key.match?(/#{input}/) }[0]
-    end
+    response = array.select{ |key| key.match?(/#{input}/) }[0]
     execute_action(response)
   end
 
