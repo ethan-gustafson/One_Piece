@@ -3,7 +3,7 @@ module StrawHatMenu
     main = <<~MAIN
     \nType 'main' if you would like to see the list of main characters!
     MAIN
-    modify_option(:characters, :all_characters, { main_characters: main })
+    @all_options[:characters][:all_characters][:main_characters] = main
   end
 
   def main_characters_interface
