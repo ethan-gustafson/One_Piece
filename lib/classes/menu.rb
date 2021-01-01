@@ -21,15 +21,7 @@ class Menu
 
   def add_exit_message
     exit_message = "Type 'exit' to exit the program!\n"
-    set_options(:exit, { initial_options: exit_message })
-  end
-
-  def set_options(key, value = {})
-    @all_options[key] = value
-  end
-
-  def modify_option(key, new_key, value)
-    @all_options[key][new_key] = value
+    @all_options[:exit] = { initial_options: exit_message }
   end
 
   def all_options
