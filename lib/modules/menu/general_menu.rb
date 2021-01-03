@@ -1,5 +1,8 @@
 require_relative '../../classes/scraper/general_info_scraper.rb'
 module GeneralMenu
+
+  GENERAL_INTERFACE_OPTIONS = ["summary", "episodes", "haki", "where_to_watch"]
+
   def add_general_menu
     initial = <<~INITIAL
     Type 'general' if you would like to see a general overview of the show!
@@ -8,27 +11,24 @@ module GeneralMenu
   end
 
   def general_interface
-    puts <<~INTERFACE
+    interface = <<~INTERFACE
       \nTo see a summary of the show, type 'summary'.
       Type 'episodes' to see how many episodes there are in One Piece!
       Type 'haki' to see what Haki is!
       Type 'where' if you would like to know where to watch One Piece!
       Type 'back' to go back up one menu.
     INTERFACE
+    printf("%s", interface.colorize(:yellow))
     general_input
   end
 
-  def general_interface_options
-    ["summary", "episodes", "haki", "where_to_watch"]
-  end
-
-  def general_input(input="\nƐ(>_>)3 ~> ")
-    recieved_input = Readline.readline(input, true)
+  def general_input
+    recieved_input = Readline.readline("\nƐ(>_>)3 ~> ", true)
     match_general_response(recieved_input)
   end
 
   def match_general_response(input)
-    response = general_interface_options.select{ |k| k.match?(/#{input}/) }[0]
+    response = GENERAL_INTERFACE_OPTIONS.select{ |k| k.match?(/#{input}/) }[0]
     execute_general_action(response)
   end
 
@@ -57,8 +57,8 @@ module GeneralMenu
   end
 
   def where_to_watch
-    show_location = "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!"
-    puts show_location.colorize(:light_red)
+    where = "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!"
+    printf("%s", where.colorize(:light_red))
     general_interface
   end
 end
