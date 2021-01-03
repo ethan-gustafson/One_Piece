@@ -13,14 +13,20 @@ module CharacterMenu
 
   def characters_interface
     add_straw_hat_menu
+    add_character_menu_back_option
     provide_character_menu
   end
 
   def provide_character_menu
     all_options[:characters][:all_characters].each do |k, v|
-      puts v
+      printf("%s", v.colorize(:magenta))
     end
     choose_character_group_input
+  end
+
+  def add_character_menu_back_option
+    exit_back_message = "Type back to go back up one menu.\n"
+    @all_options[:characters][:all_characters][:back] = exit_back_message
   end
 
   def character_options_keys
