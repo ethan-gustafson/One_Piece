@@ -16,7 +16,7 @@ class Menu
     @all_options = {}
     set_menu
     provide_initial_menu
-    evaluate_user_input(all_options_keys, :execute_action)
+    evaluate_user_input(all_options_keys, :execute_main_actions)
   end
 
   # set_menu adds each initial moduled menu into this Menu class.
@@ -75,8 +75,7 @@ class Menu
   #   match, then the array would be empty, resulting in nil.
   #   If there is a match, the return value would be a String.
   #
-  #   self.send takes an argument of a symbol, plus additional arguments
-  #   specified.
+  # self.send takes an argument of a symbol, plus additional arguments specified.
 
   def evaluate_user_input(array, method)
     input  = user_input
@@ -84,22 +83,41 @@ class Menu
     self.send method, action
   end
 
-  # execute_action will evaluate the user response. There are three possible
-  #   return values: 
-  #   1. Regex pattern /exit/
-  #   2. nil
-  #   3. String
+  # execute_main_actions will evaluate the user response. There are two possible
+  #   return values : 
+  #   1. nil
+  #   2. String
+  # 
+  # It will also use the shared_actions_responses method, prompting which menu to output again.
 
-  def execute_action(response)
-    case response
-    when /exit/
-      puts "See you next time!"
-    when nil
-      puts "Sorry, I didn't get that."
-      evaluate_user_input(all_options_keys, :execute_action)
-    else
+  def execute_main_actions(response)
+    shared_actions_responses(response)
+    if !response.nil?
       next_menu = "#{response}_options"
       self.send(next_menu.to_sym)
+    else
+      provide_initial_menu
+      evaluate_user_input(all_options_keys, :execute_main_actions)
+    end
+  end
+
+  # shared_actions_responses is responsible for casing conditions that are common between multiple
+  #   case statements within other module action methods.
+  #
+  # It takes a response, array, and method (symbol) as its arguments. The reason why the array and
+  #   method would be missing is so that another method can handle what happens next for a specific
+  #   menu.
+
+  def shared_actions_responses(response, array = [], method = nil)
+    case response 
+    when /exit/
+      puts "See you next time!"
+      exit(true)
+    when nil
+      puts "Sorry, I didn't get that."
+      if !array.empty? && !method.nil?
+        evaluate_user_input(array, method)
+      end
     end
   end
 end
