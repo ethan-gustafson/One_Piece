@@ -1,7 +1,9 @@
 require_relative '../../classes/scraper/general_info_scraper.rb'
 module GeneralMenu
 
-  GENERAL_INTERFACE_OPTIONS = ["summary", "episodes", "haki", "where_to_watch"]
+  GENERAL_MENU_OPTIONS = ["summary", "episodes", "haki", "where_to_watch", "back", "exit"]
+
+  # add_general_menu is added into the @all_options hash at Menu initialization.
 
   def add_general_menu
     initial = <<~INITIAL
@@ -10,55 +12,57 @@ module GeneralMenu
     @all_options[:general] = { initial_options: initial }
   end
 
-  def general_interface
-    interface = <<~INTERFACE
+  # general_options outputs general menu options then prompts for user input.
+
+  def general_options
+    options = <<~OPTIONS
       \nTo see a summary of the show, type 'summary'.
       Type 'episodes' to see how many episodes there are in One Piece!
       Type 'haki' to see what Haki is!
       Type 'where' if you would like to know where to watch One Piece!
       Type 'back' to go back up one menu.
-    INTERFACE
-    printf("%s", interface.colorize(:yellow))
-    general_input
+      OPTIONS
+    printf("%s", options.colorize(:yellow))
+    evaluate_user_input(GENERAL_MENU_OPTIONS, :execute_general_action)
   end
 
-  def general_input
-    recieved_input = Readline.readline("\nƐ(>_>)3 ~> ", true)
-    match_general_response(recieved_input)
-  end
-
-  def match_general_response(input)
-    response = GENERAL_INTERFACE_OPTIONS.select{ |k| k.match?(/#{input}/) }[0]
-    execute_general_action(response)
-  end
+  # execute_general_action handles all user options available. 
 
   def execute_general_action(response)
-    if !response.nil?
-      chosen_selection = response.to_sym
-      self.send(chosen_selection)
-    else
+    shared_actions_responses(response, all_options_keys, :general_options)
+    case response
+    when /back/
       provide_initial_menu
+      evaluate_user_input(all_options_keys, :execute_main_actions)
+    else
+      method = response.to_sym
+      self.send(method)
     end
   end
+  # multiple conditions
+  # Most are shared between classes
+  # create one more case condition method and use it in these methods
+
+  # The rest of the methods below rely on Scraper classes code. 
 
   def summary
     puts GeneralInfoScraper.summary.colorize(:green)
-    general_interface
+    general_options
   end
 
   def episodes
     puts GeneralInfoScraper.episodes.colorize(:red)
-    general_interface
+    general_options
   end
 
   def haki
     puts GeneralInfoScraper.haki.colorize(:blue)
-    general_interface
+    general_options
   end
 
   def where_to_watch
-    where = "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!"
+    where = "\nYou can find One Piece on Crunchyroll, Funimation or Hulu!\n"
     printf("%s", where.colorize(:light_red))
-    general_interface
+    general_options
   end
 end
